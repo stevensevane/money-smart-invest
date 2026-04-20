@@ -1,6 +1,10 @@
 .DS_Store
-*.png
-*.jpg
-*.jpeg
+inspo-bottom.png
+inspo-mid1.png
+inspo-mid2.png
+inspo-mid3.png
+inspo-mid4.png
+inspo-top.png
+page-full.png
 .playwright-mcp/
 page-snapshot.md
