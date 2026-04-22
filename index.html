@@ -76,7 +76,7 @@
     .hero {
       position: relative; min-height: 100vh;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 120px 24px 100px; overflow: hidden;
+      padding: 120px 24px 100px; overflow: hidden;
     }
     .hero-bg {
       position: absolute; inset: 0;
@@ -92,7 +92,6 @@
     .blob { position:absolute; border-radius:50%; filter:blur(70px); z-index:1; pointer-events:none; }
     .blob-1 { width:500px;height:500px; background:rgba(75,110,250,.45); top:-150px;left:-150px; animation:blobPulse 7s ease-in-out infinite; }
     .blob-2 { width:400px;height:400px; background:rgba(124,92,252,.35); bottom:-100px;right:-100px; animation:blobPulse 9s ease-in-out infinite 1s; }
-    .blob-3 { width:280px;height:280px; background:rgba(107,142,255,.25); top:40%;right:8%; animation:float 12s ease-in-out infinite; }
 
     .hero-shape { position:absolute; z-index:1; pointer-events:none; opacity:.15; }
     .hs1 { top:14%;left:7%; animation:float 8s ease-in-out infinite; }
@@ -100,7 +99,26 @@
     .hs3 { bottom:22%;left:6%; animation:float 13s ease-in-out infinite 2s; }
     .hs4 { bottom:18%;right:7%; animation:floatR 9s ease-in-out infinite 1s; }
 
-    .hero-inner { position:relative; z-index:2; max-width:820px; }
+    .hero-inner {
+      position:relative; z-index:2; width:100%; max-width:1100px;
+      display:grid; grid-template-columns:1fr 460px; gap:60px; align-items:center;
+    }
+    .hero-text { text-align:left; }
+    .hero-photo-wrap {
+      position:relative; display:flex; align-items:flex-end; justify-content:center;
+    }
+    .hero-photo-wrap img {
+      width:100%; max-width:420px; border-radius:20px;
+      object-fit:cover; object-position:top;
+      box-shadow:0 32px 80px rgba(0,0,0,.35);
+      display:block;
+    }
+    @media(max-width:860px){
+      .hero-inner{ grid-template-columns:1fr; text-align:center; }
+      .hero-text { text-align:center; }
+      .hero-tags { justify-content:center; }
+      .hero-photo-wrap { display:none; }
+    }
 
     .hero-badge {
       display:inline-flex; align-items:center; gap:8px;
@@ -108,6 +126,7 @@
       border:1px solid rgba(255,255,255,.2); border-radius:999px;
       padding:8px 22px; font-size:12px; font-weight:600; color:rgba(255,255,255,.9);
       letter-spacing:.1em; text-transform:uppercase; margin-bottom:32px;
+      width:fit-content;
     }
     .hero-badge .dot { width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blobPulse 2s ease-in-out infinite; }
 
@@ -559,35 +578,32 @@
     <div class="hero-bg"></div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
     <svg class="hero-shape hs1" width="56" height="56" viewBox="0 0 56 56" fill="none"><rect x="4" y="4" width="48" height="48" rx="13" stroke="white" stroke-width="2.5"/></svg>
     <svg class="hero-shape hs2" width="44" height="44" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="18" stroke="white" stroke-width="2.5"/></svg>
     <svg class="hero-shape hs3" width="38" height="38" viewBox="0 0 38 38" fill="none"><polygon points="19,3 35,35 3,35" stroke="white" stroke-width="2.5" fill="none"/></svg>
     <svg class="hero-shape hs4" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 2 L30 30 L2 30 Z" stroke="white" stroke-width="2" fill="none"/></svg>
-    <svg class="hero-shape" style="top:35%;left:3%;animation:float 11s ease-in-out infinite 3s;" width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="white" stroke-width="1.5"/></svg>
-    <svg class="hero-shape" style="top:60%;left:12%;animation:floatR 14s ease-in-out infinite 1s;" width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="4" stroke="white" stroke-width="1.5"/></svg>
-    <svg class="hero-shape" style="top:25%;right:3%;animation:float 9s ease-in-out infinite 4s;" width="28" height="28" viewBox="0 0 28 28" fill="none"><polygon points="14,2 26,26 2,26" stroke="white" stroke-width="1.5" fill="none"/></svg>
-    <svg class="hero-shape" style="top:70%;right:14%;animation:floatR 16s ease-in-out infinite 2s;opacity:.2;" width="14" height="14" viewBox="0 0 14 14" fill="rgba(230,250,80,0.6)"><circle cx="7" cy="7" r="7"/></svg>
-    <svg class="hero-shape" style="top:50%;left:22%;animation:float 18s ease-in-out infinite 0.5s;opacity:.25;" width="10" height="10" viewBox="0 0 10 10" fill="rgba(230,250,80,0.7)"><circle cx="5" cy="5" r="5"/></svg>
-    <svg class="hero-shape" style="top:80%;left:40%;animation:float 10s ease-in-out infinite 1.5s;" width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="15" stroke="rgba(230,250,80,0.35)" stroke-width="1.5" stroke-dasharray="4 4"/></svg>
-    <svg class="hero-shape" style="top:10%;right:25%;animation:floatR 12s ease-in-out infinite 5s;" width="30" height="30" viewBox="0 0 30 30" fill="none"><rect x="2" y="2" width="26" height="26" rx="6" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="4 4"/></svg>
 
     <div class="hero-inner">
-      <div class="hero-badge"><div class="dot"></div> Money Smart Invest · Mon Éducation Financière</div>
-      <h1 class="hero-title">
-        <span class="hl-y">Investir</span> ne devrait<br />
-        jamais être <span class="hl-ul">intimidant.</span>
-      </h1>
-      <p class="hero-sub">Le parcours d'éducation financière pour partir de zéro et construire ton patrimoine <strong>en moins de 2 heures par mois.</strong></p>
-      <div class="hero-tags">
-        <span class="hero-tag">📈 Bourse &amp; ETF</span>
-        <span class="hero-tag">🏠 Immobilier</span>
-        <span class="hero-tag">₿ Bitcoin</span>
-        <span class="hero-tag">🌐 Investissements alternatifs</span>
+      <div class="hero-text">
+        <div class="hero-badge"><div class="dot"></div> Money Smart Invest · Mon Éducation Financière</div>
+        <h1 class="hero-title">
+          <span class="hl-y">Investir</span> ne devrait<br />
+          jamais être <span class="hl-ul">intimidant.</span>
+        </h1>
+        <p class="hero-sub">Le parcours d'éducation financière pour partir de zéro et construire ton patrimoine <strong>en moins de 2 heures par mois.</strong></p>
+        <div class="hero-tags">
+          <span class="hero-tag">📈 Bourse &amp; ETF</span>
+          <span class="hero-tag">🏠 Immobilier</span>
+          <span class="hero-tag">₿ Bitcoin</span>
+          <span class="hero-tag">🌐 Investissements alternatifs</span>
+        </div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;">
+          <a href="#pricing" class="btn-main">Je rejoins Money Smart Invest <span class="arr">→</span></a>
+          <a href="#programme" class="btn-ghost">Découvrir le programme</a>
+        </div>
       </div>
-      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-        <a href="#pricing" class="btn-main">Je rejoins Money Smart Invest <span class="arr">→</span></a>
-        <a href="#programme" class="btn-ghost">Découvrir le programme</a>
+      <div class="hero-photo-wrap">
+        <img src="sarah-pro.png" alt="Sarah, fondatrice de Mon Éducation Financière" />
       </div>
     </div>
   </header>
@@ -660,7 +676,7 @@
     </section>
 
     <!-- PROGRAMME -->
-    <section id="programme" class="sec s-stack" style="background:#fff;z-index:12;">
+    <section id="programme" class="sec" style="background:#fff;">
       <div class="box">
         <div class="label">JE TE PRÉSENTE LE PARCOURS</div>
         <h2 class="title">ET TOI AUSSI TU PEUX APPRENDRE À INVESTIR,<br /><span class="hl-y">en moins de 2h par mois.</span></h2>
@@ -678,7 +694,7 @@
     </section>
 
     <!-- TIMELINE -->
-    <section class="sec s-stack" style="background:#EEF2FF;z-index:13;">
+    <section class="sec" style="background:#EEF2FF;">
       <div class="box">
         <div class="label">PAS À PAS, SANS TE PERDRE</div>
         <h2 class="title">Comment on y va ensemble<br />en <span class="hl-y">3 étapes</span></h2>
@@ -741,7 +757,7 @@
     </section>
 
     <!-- VIDEO -->
-    <section class="sec s-stack" style="background:var(--bg);z-index:14;">
+    <section class="sec" style="background:var(--bg);">
       <div class="box" style="text-align:center;">
         <div class="label" style="justify-content:center;">APERÇU DU PROGRAMME</div>
         <h2 class="title" style="text-align:center;">Un extrait pour que tu voies<br /><span class="hl-y">à quoi ça ressemble</span></h2>
@@ -752,7 +768,7 @@
     </section>
 
     <!-- BONUSES -->
-    <section class="sec s-stack" style="background:var(--warm);background-image:radial-gradient(circle,rgba(75,110,250,0.06) 1px,transparent 1px);background-size:22px 22px;z-index:15;">
+    <section class="sec" style="background:var(--warm);background-image:radial-gradient(circle,rgba(75,110,250,0.06) 1px,transparent 1px);background-size:22px 22px;">
       <div class="box">
         <div class="label">EN CADEAU AVEC TON INSCRIPTION</div>
         <h2 class="title">Et en bonus, tu recevras :</h2>
@@ -794,7 +810,7 @@
     </section>
 
     <!-- TESTIMONIALS -->
-    <section class="sec testi-sec s-stack" style="z-index:16;">
+    <section class="sec testi-sec">
       <div class="box-wide">
         <div style="text-align:center;">
           <div class="label" style="justify-content:center;color:rgba(255,255,255,.3);">Les victoires de nos membres 🎉</div>
