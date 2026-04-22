@@ -39,9 +39,15 @@
     @keyframes bounceX  { 0%,100%{transform:translateX(0)} 50%{transform:translateX(7px)} }
 
     /* ── SCROLL REVEAL ── */
-    .r { opacity:0; transform:translateY(32px); transition:opacity .6s ease, transform .6s ease; }
-    .r.on { opacity:1; transform:translateY(0); }
-    .r.d1{transition-delay:.1s} .r.d2{transition-delay:.2s} .r.d3{transition-delay:.3s} .r.d4{transition-delay:.4s}
+    .r       { opacity:0; transform:translateY(36px);   transition:opacity .65s ease, transform .65s ease; }
+    .r-left  { opacity:0; transform:translateX(-48px);  transition:opacity .65s ease, transform .65s ease; }
+    .r-right { opacity:0; transform:translateX(48px);   transition:opacity .65s ease, transform .65s ease; }
+    .r-fade  { opacity:0;                               transition:opacity .9s ease; }
+    .r.on, .r-left.on, .r-right.on, .r-fade.on { opacity:1; transform:translate(0); }
+    .r.d1,.r-left.d1,.r-right.d1,.r-fade.d1 { transition-delay:.12s }
+    .r.d2,.r-left.d2,.r-right.d2,.r-fade.d2 { transition-delay:.24s }
+    .r.d3,.r-left.d3,.r-right.d3,.r-fade.d3 { transition-delay:.36s }
+    .r.d4,.r-left.d4,.r-right.d4,.r-fade.d4 { transition-delay:.48s }
 
     /* ── STICKY STACKING ── */
     .s-stack {
@@ -623,25 +629,25 @@
   <div class="stack-wrapper">
 
     <!-- PAIN -->
-    <section class="pain-sec s-stack" style="z-index:10;">
+    <section class="pain-sec" style="position:sticky;top:0;z-index:10;border-radius:24px 24px 0 0;box-shadow:0 -10px 48px rgba(0,0,0,0.18);">
       <div class="box">
-        <div style="text-align:center;" class="r">
+        <div style="text-align:center;" class="r-fade">
           <div class="label" style="justify-content:center;color:rgba(255,255,255,.3);">💬 Qu'est-ce qui nous freine ?</div>
           <h2 class="title" style="color:#fff;font-style:italic;text-align:center;">La peur. La paralysie. Le silence.</h2>
           <p class="sub" style="color:rgba(255,255,255,.5);margin:0 auto;">Tu n'es pas seule. Voici ce que ressentent presque toutes celles qui commencent.</p>
         </div>
         <div class="pain-list">
-          <div class="pain-row r">
+          <div class="pain-row r-left">
             <div class="pain-num">01</div>
             <div class="pain-statement">"T'es perdu·e et tu ne sais pas par où commencer."</div>
             <div class="pain-desc">ETF, bourse, SCPI, crypto, assurance-vie… Plus tu cherches, <strong>plus tu te noies.</strong> Tout se contredit, et au final, tu ne fais rien.</div>
           </div>
-          <div class="pain-row r d1">
+          <div class="pain-row r-right d1">
             <div class="pain-num">02</div>
             <div class="pain-statement">"T'as besoin d'une méthode claire — pas d'un master en finance."</div>
             <div class="pain-desc">Combien investir ? Dans quoi exactement ? <strong>T'en as marre de ne pas avoir de réponse simple.</strong> Tu veux juste une méthode qui marche.</div>
           </div>
-          <div class="pain-row r d2">
+          <div class="pain-row r-left d2">
             <div class="pain-num">03</div>
             <div class="pain-statement">"Et plus tu attends, plus tu as l'impression d'avoir raté le train."</div>
             <div class="pain-desc">Tu remets à plus tard. Parce que c'est plus simple d'éviter le sujet que de risquer de mal faire. <strong>Résultat ? Tu n'investis pas.</strong></div>
@@ -655,54 +661,54 @@
     </section>
 
     <!-- STORY -->
-    <section class="sec story-sec">
+    <section class="sec story-sec" style="position:relative;z-index:20;">
       <div class="box">
-        <div class="label">JE COMPRENDS CE QUE TU RESSENS</div>
-        <h2 class="title">Reprendre mes finances en main,<br />ça voulait dire devenir <span class="hl-ul">responsable.</span></h2>
-        <div style="font-size:16px;color:#555;line-height:1.8;margin-top:28px;" class="r">
+        <div class="label r-fade">JE COMPRENDS CE QUE TU RESSENS</div>
+        <h2 class="title r">Reprendre mes finances en main,<br />ça voulait dire devenir <span class="hl-ul">responsable.</span></h2>
+        <div style="font-size:16px;color:#555;line-height:1.8;margin-top:28px;" class="r-left">
           <p>J'ai déjà senti cette boule au ventre en ouvrant mon compte bancaire. Quand j'étais étudiante, j'étais presque toujours à découvert. Je me disais que plus tard, avec un "vrai" salaire, tout irait mieux.</p><br/>
           <p>En arrivant à Hong Kong, j'ai découvert un <strong style="color:var(--dark)">autre rapport à l'argent.</strong> Autour de moi, on parlait d'argent, d'investissement… sans gêne. Et c'est là que j'ai réalisé à quel point je manquais de connaissances.</p>
         </div>
-        <div class="blockquote r">
+        <div class="blockquote r-fade">
           <p class="q">Le problème n'était pas mon revenu.<br/>Le problème n'était pas mon épargne.<br/>Le problème, c'était mon manque d'éducation financière.</p>
           <p class="attr">— Sarah, fondatrice de Mon Éducation Financière · Ex-banque d'investissement, Hong Kong</p>
         </div>
-        <div style="font-size:16px;color:#555;line-height:1.8;" class="r">
+        <div style="font-size:16px;color:#555;line-height:1.8;" class="r-right">
           <p>J'ai commencé à investir en immobilier, puis en bourse, puis en crypto… J'ai fait des erreurs, j'ai beaucoup appris. Quand mes investissements ont commencé à grossir, j'ai commencé à voir mon argent <strong style="color:var(--dark)">travailler pour moi.</strong></p>
         </div>
-        <div class="duo r">
-          <div class="duo-card bad"><div class="big">APPAUVRIT</div><p>L'ignorance financière</p></div>
-          <div class="duo-card good"><div class="big">ENRICHIT</div><p>L'éducation financière</p></div>
+        <div class="duo">
+          <div class="duo-card bad r-left"><div class="big">APPAUVRIT</div><p>L'ignorance financière</p></div>
+          <div class="duo-card good r-right d1"><div class="big">ENRICHIT</div><p>L'éducation financière</p></div>
         </div>
       </div>
     </section>
 
     <!-- PROGRAMME -->
-    <section id="programme" class="sec" style="background:#fff;">
+    <section id="programme" class="sec" style="background:#fff;position:relative;z-index:20;">
       <div class="box">
-        <div class="label">JE TE PRÉSENTE LE PARCOURS</div>
-        <h2 class="title">ET TOI AUSSI TU PEUX APPRENDRE À INVESTIR,<br /><span class="hl-y">en moins de 2h par mois.</span></h2>
-        <p class="sub">Tu as juste besoin d'un plan clair. C'est parti 🚀</p>
-        <img src="695397f67b285_MEF-MOCKUP2-3.jpg" alt="Aperçu du programme Money Smart Invest" class="mockup-img r" />
+        <div class="label r-fade">JE TE PRÉSENTE LE PARCOURS</div>
+        <h2 class="title r">ET TOI AUSSI TU PEUX APPRENDRE À INVESTIR,<br /><span class="hl-y">en moins de 2h par mois.</span></h2>
+        <p class="sub r">Tu as juste besoin d'un plan clair. C'est parti 🚀</p>
+        <img src="695397f67b285_MEF-MOCKUP2-3.jpg" alt="Aperçu du programme Money Smart Invest" class="mockup-img r-fade" />
         <div class="feat-grid" style="margin-top:52px;">
-          <div class="feat-card r"><span class="feat-icon">🧭</span><div class="feat-ttl">Parcours 100 % autonome</div><div class="feat-dsc">Sans live ni atelier : tu avances à ton rythme, quand tu veux.</div></div>
+          <div class="feat-card r-left"><span class="feat-icon">🧭</span><div class="feat-ttl">Parcours 100 % autonome</div><div class="feat-dsc">Sans live ni atelier : tu avances à ton rythme, quand tu veux.</div></div>
           <div class="feat-card r d1"><span class="feat-icon">🧩</span><div class="feat-ttl">33 missions financières</div><div class="feat-dsc">Concrètes, pour passer à l'action étape par étape.</div></div>
-          <div class="feat-card r d2"><span class="feat-icon">🛠️</span><div class="feat-ttl">8 outils pratiques</div><div class="feat-dsc">Simulateurs, trackers et matrices pour structurer tes décisions.</div></div>
-          <div class="feat-card r"><span class="feat-icon">📘</span><div class="feat-ttl">Workbook complet</div><div class="feat-dsc">Pour appliquer chaque concept à ta situation personnelle.</div></div>
+          <div class="feat-card r-right d2"><span class="feat-icon">🛠️</span><div class="feat-ttl">8 outils pratiques</div><div class="feat-dsc">Simulateurs, trackers et matrices pour structurer tes décisions.</div></div>
+          <div class="feat-card r-left"><span class="feat-icon">📘</span><div class="feat-ttl">Workbook complet</div><div class="feat-dsc">Pour appliquer chaque concept à ta situation personnelle.</div></div>
           <div class="feat-card r d1"><span class="feat-icon">📄</span><div class="feat-ttl">315 pages de supports</div><div class="feat-dsc">Clairs, progressifs et sans jargon. Accès pendant 1 an.</div></div>
-          <div class="feat-card r d2"><span class="feat-icon">💬</span><div class="feat-ttl">Accès WhatsApp</div><div class="feat-dsc">Pour poser toutes tes questions et ne jamais rester bloquée.</div></div>
+          <div class="feat-card r-right d2"><span class="feat-icon">💬</span><div class="feat-ttl">Accès WhatsApp</div><div class="feat-dsc">Pour poser toutes tes questions et ne jamais rester bloquée.</div></div>
         </div>
       </div>
     </section>
 
     <!-- TIMELINE -->
-    <section class="sec" style="background:#EEF2FF;">
+    <section class="sec" style="background:#EEF2FF;position:relative;z-index:20;">
       <div class="box">
         <div class="label">PAS À PAS, SANS TE PERDRE</div>
         <h2 class="title">Comment on y va ensemble<br />en <span class="hl-y">3 étapes</span></h2>
         <p class="sub" style="margin-bottom:52px;">Un parcours structuré, du premier pas à ta stratégie long terme.</p>
         <div class="tl">
-          <div class="tl-item r">
+          <div class="tl-item r-left">
             <div class="tl-dot">1</div>
             <div class="tl-card">
               <div class="tl-head">🧩 Étape 1 — Ton point de départ</div>
@@ -717,7 +723,7 @@
               </div>
             </div>
           </div>
-          <div class="tl-item r d1">
+          <div class="tl-item r-right d1">
             <div class="tl-dot">2</div>
             <div class="tl-card">
               <div class="tl-head">🛠️ Étape 2 — La pratique</div>
@@ -737,7 +743,7 @@
               </div>
             </div>
           </div>
-          <div class="tl-item r d2" style="margin-bottom:0;">
+          <div class="tl-item r-left d2" style="margin-bottom:0;">
             <div class="tl-dot">3</div>
             <div class="tl-card">
               <div class="tl-head">🧭 Étape 3 — Ta stratégie long terme</div>
@@ -759,7 +765,7 @@
     </section>
 
     <!-- VIDEO -->
-    <section class="sec" style="background:var(--bg);">
+    <section class="sec" style="background:var(--bg);position:relative;z-index:20;">
       <div class="box" style="text-align:center;">
         <div class="label" style="justify-content:center;">APERÇU DU PROGRAMME</div>
         <h2 class="title" style="text-align:center;">Un extrait pour que tu voies<br /><span class="hl-y">à quoi ça ressemble</span></h2>
@@ -770,12 +776,12 @@
     </section>
 
     <!-- BONUSES -->
-    <section class="sec" style="background:var(--warm);background-image:radial-gradient(circle,rgba(75,110,250,0.06) 1px,transparent 1px);background-size:22px 22px;">
+    <section class="sec" style="background:var(--warm);background-image:radial-gradient(circle,rgba(75,110,250,0.06) 1px,transparent 1px);background-size:22px 22px;position:relative;z-index:20;">
       <div class="box">
         <div class="label">EN CADEAU AVEC TON INSCRIPTION</div>
         <h2 class="title">Et en bonus, tu recevras :</h2>
         <p class="sub" style="margin-bottom:44px;">3 ressources offertes pour aller encore plus loin.</p>
-        <div class="bonus-card r">
+        <div class="bonus-card r-left">
           <div class="bonus-inner">
             <div class="bonus-stripe">B1</div>
             <div class="bonus-body">
@@ -786,7 +792,7 @@
             </div>
           </div>
         </div>
-        <div class="bonus-card r d1">
+        <div class="bonus-card r-fade d1">
           <div class="bonus-inner">
             <div class="bonus-stripe">B2</div>
             <div class="bonus-body">
@@ -797,7 +803,7 @@
             </div>
           </div>
         </div>
-        <div class="bonus-card r d2">
+        <div class="bonus-card r-right d2">
           <div class="bonus-inner">
             <div class="bonus-stripe">B3</div>
             <div class="bonus-body">
@@ -812,7 +818,7 @@
     </section>
 
     <!-- TESTIMONIALS -->
-    <section class="sec testi-sec">
+    <section class="sec testi-sec" style="position:relative;z-index:20;">
       <div class="box-wide">
         <div style="text-align:center;">
           <div class="label" style="justify-content:center;color:rgba(255,255,255,.3);">Les victoires de nos membres 🎉</div>
@@ -1055,7 +1061,7 @@
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.r').forEach(el => obs.observe(el));
+    document.querySelectorAll('.r, .r-left, .r-right, .r-fade').forEach(el => obs.observe(el));
 
     // Counter
     const cobs = new IntersectionObserver(entries => {
