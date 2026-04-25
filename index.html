@@ -1019,7 +1019,7 @@
       }
 
       [ini,mon,yrs,rat].forEach(el=>el.addEventListener('input',calc));
-      calc();
+      document.addEventListener('DOMContentLoaded', calc);
     })();
     </script>
 
