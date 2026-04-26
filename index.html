@@ -68,10 +68,14 @@
     .sec { padding: 96px 24px; }
     .box { max-width: 900px; margin: 0 auto; }
     .box-wide { max-width: 1100px; margin: 0 auto; }
+    @media(max-width:640px) {
+      .sec .box, .sec .box-wide { text-align:center; }
+      .label { justify-content:center; }
+    }
 
     .label {
       display: inline-flex; align-items: center; gap: 10px;
-      font-size: 10px; font-weight: 700; letter-spacing: .16em;
+      font-size: 12px; font-weight: 700; letter-spacing: .14em;
       text-transform: uppercase; color: var(--primary); margin-bottom: 16px;
     }
     .label::before { content:''; display:block; width:20px; height:2px; background:var(--primary); border-radius:2px; }
@@ -122,7 +126,6 @@
     }
     .hero-photo-wrap img {
       width:100%; max-width:420px; border-radius:20px;
-      object-fit:cover; object-position:top;
       box-shadow:0 32px 80px rgba(0,0,0,.35);
       display:block;
     }
@@ -132,6 +135,7 @@
       .hero-tags { justify-content:center; }
       .hero-photo-wrap { display:flex; justify-content:center; }
       .hero-photo-wrap img { max-width:260px; }
+      .hero-btns { justify-content:center; }
     }
 
     .hero-badge {
@@ -415,6 +419,10 @@
     .p-desc { font-size:13px; color:#999; margin-bottom:24px; }
     .p-price { font-family:'Instrument Sans',sans-serif; font-size:52px; font-weight:700; line-height:1; margin-bottom:24px; color:var(--dark); }
     .p-price sup { font-size:24px; vertical-align:super; font-weight:700; }
+    .p-old-price { font-size:15px; font-weight:500; color:#999; margin-top:-16px; margin-bottom:20px; }
+    .p-old-price s { text-decoration-color:#999; font-size:17px; }
+    .p-card.pop .p-old-price { color:rgba(255,255,255,.55); }
+    .p-card.pop .p-old-price s { text-decoration-color:rgba(255,255,255,.55); }
     .p-card.pop .p-tier { color:var(--soft); }
     .p-card.pop .p-name { color:#fff; }
     .p-card.pop .p-desc { color:rgba(255,255,255,.55); }
@@ -628,13 +636,13 @@
           <span class="hl-y">Investir</span> ne devrait<br />
           jamais être <span class="hl-ul">intimidant.</span>
         </h1>
-        <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:32px;">
+        <div class="hero-btns" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:32px;">
           <a href="#pricing" class="btn-main">Je rejoins Money Smart Invest <span class="arr">→</span></a>
           <a href="#programme" class="btn-ghost">Découvrir le programme</a>
         </div>
       </div>
       <div class="hero-photo-wrap">
-        <img src="sarah-pro.jpg" alt="Sarah, fondatrice de Mon Éducation Financière" fetchpriority="high" />
+        <img src="sarah-hero.png" alt="Sarah, fondatrice de Mon Éducation Financière" fetchpriority="high" />
       </div>
     </div>
   </header>
@@ -655,7 +663,7 @@
     <section class="pain-sec" style="position:sticky;top:0;z-index:10;border-radius:24px 24px 0 0;box-shadow:0 -10px 48px rgba(0,0,0,0.18);">
       <div class="box">
         <div style="text-align:center;" class="r-fade">
-          <div class="label" style="justify-content:center;color:rgba(255,255,255,.3);">💬 Qu'est-ce qui nous freine ?</div>
+          <div class="label" style="justify-content:center;color:rgba(255,255,255,.7);">💬 Qu'est-ce qui nous freine ?</div>
           <h2 class="title" style="color:#fff;font-style:italic;text-align:center;">La peur. La paralysie. Le silence.</h2>
           <p class="sub" style="color:rgba(255,255,255,.5);margin:0 auto;">Tu n'es pas seule. Voici ce que ressentent presque toutes celles qui commencent.</p>
         </div>
@@ -684,7 +692,7 @@
     </section>
 
     <!-- STORY -->
-    <section class="sec story-sec" style="position:relative;z-index:20;background:var(--white);">
+    <section class="sec story-sec" style="position:relative;z-index:20;background:var(--white);padding-bottom:48px;">
       <div class="box">
 
         <div class="r" style="text-align:center;margin-bottom:52px;">
@@ -740,10 +748,10 @@
     </style>
 
     <!-- PROGRAMME -->
-    <section id="programme" class="sec" style="background:#fff;position:relative;z-index:20;">
+    <section id="programme" class="sec" style="background:#fff;position:relative;z-index:20;padding-top:48px;">
       <div class="box">
         <div class="label r-fade">JE TE PRÉSENTE LE PARCOURS</div>
-        <h2 class="title r">ET TOI AUSSI TU PEUX APPRENDRE À INVESTIR,<br /><span class="hl-y">en moins de 2h par semaine.</span></h2>
+        <h2 class="title r">ET TOI AUSSI TU PEUX APPRENDRE À INVESTIR SANS T'ARRACHER LES CHEVEUX,<br /><span class="hl-y">en moins de 2h par semaine.</span></h2>
         <p class="sub r">Tu as juste besoin d'un plan clair. C'est parti 🚀</p>
         <img src="695397f67b285_MEF-MOCKUP2-3.jpg" alt="Aperçu du programme Money Smart Invest" class="mockup-img r-fade" loading="lazy" />
         <div class="feat-grid" style="margin-top:52px;">
@@ -1213,7 +1221,7 @@
       <div style="text-align:center;">
         <div class="label" style="justify-content:center;">CHOISIS TA FORMULE</div>
         <h2 class="title" style="text-align:center;">Rejoins Money Smart Invest</h2>
-        <p class="sub" style="margin:0 auto 52px;">Accès pendant 1 an · Garantie satisfaite ou remboursée 15 jours</p>
+        <p class="sub" style="margin:0 auto 52px;">Accès pendant 1 an · Garantie satisfaite ou remboursée 14 jours</p>
       </div>
       <div class="pricing-grid">
         <div class="p-card r">
@@ -1241,6 +1249,7 @@
           <div class="p-name">COMPLET</div>
           <div class="p-desc">Devenir autonome sur tous tes investissements</div>
           <div class="p-price"><sup>€</sup>497</div>
+          <div class="p-old-price">au lieu de <s>997 €</s></div>
           <ul class="p-feats">
             <li><span class="ok">✅</span> Accès à ton rythme pendant 1 an</li>
             <li><span class="ok">✅</span> Questions sur WhatsApp</li>
@@ -1260,6 +1269,7 @@
           <div class="p-name">1 TO 1</div>
           <div class="p-desc">Avancer avec un cadre personnalisé</div>
           <div class="p-price"><sup>€</sup>997</div>
+          <div class="p-old-price">au lieu de <s>1 994 €</s></div>
           <ul class="p-feats">
             <li><span class="ok">✅</span> Accès à ton rythme pendant 1 an</li>
             <li><span class="ok">✅</span> Questions sur WhatsApp</li>
@@ -1323,7 +1333,7 @@
       <div class="gua-card">
         <div class="gua-badge">🛡️ Garantie</div>
         <h2 class="gua-ttl">Rejoindre Money Smart Invest,<br />c'est sans risque.</h2>
-        <p class="gua-txt">Tu disposes de <strong>15 jours</strong> après ton achat pour tester le programme. Si tu estimes que ce n'est pas fait pour toi, il te suffit d'envoyer un email et mon équipe te remboursera <strong>intégralement, sans discussion</strong> 🤗</p>
+        <p class="gua-txt">Tu disposes de <strong>14 jours</strong> après ton achat pour tester le programme. Si tu estimes que ce n'est pas fait pour toi, il te suffit d'envoyer un email et mon équipe te remboursera <strong>intégralement, sans discussion</strong> 🤗</p>
         <div style="margin-top:36px;">
           <a href="#pricing" class="btn-main" style="justify-content:center;">Je rejoins Money Smart Invest <span class="arr">→</span></a>
         </div>
@@ -1337,7 +1347,7 @@
       <h2 class="cta-ttl">YOU CAN<br /><span class="acc">DO IT.</span></h2>
       <p style="font-size:18px;color:rgba(255,255,255,.7);max-width:520px;margin:0 auto 40px;line-height:1.75;">Je le vois tous les jours à travers les personnes que j'accompagne.<br/>Tu mérites ce soutien. Et j'ai hâte de voir ce que tu vas accomplir.</p>
       <a href="#pricing" class="btn-main" style="justify-content:center;">Rejoins Money Smart Invest <span class="arr">→</span></a>
-      <p style="color:rgba(255,255,255,.3);font-size:13px;margin-top:18px;">Garantie satisfaite ou remboursée · 15 jours · Sans engagement</p>
+      <p style="color:rgba(255,255,255,.3);font-size:13px;margin-top:18px;">Garantie satisfaite ou remboursée · 14 jours · Sans engagement</p>
     </div>
   </section>
 
@@ -1361,7 +1371,7 @@
     <div class="scta-inner">
       <div class="scta-text">
         <div class="scta-title">Money Smart Invest · À partir de 297 €</div>
-        <div class="scta-sub">Accès 1 an · 3 bonus offerts · Garantie 15 jours</div>
+        <div class="scta-sub">Accès 1 an · 3 bonus offerts · Garantie 14 jours</div>
       </div>
       <div class="scta-actions">
         <a href="#pricing" class="scta-btn">Rejoindre maintenant →</a>
