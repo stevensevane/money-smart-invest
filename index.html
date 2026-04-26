@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Money Smart Invest · Investir ne devrait jamais être intimidant</title>
-  <meta name="description" content="Le parcours d'éducation financière pour apprendre à investir avec confiance, à ton rythme, en moins de 2h par mois." />
+  <meta name="description" content="Le parcours d'éducation financière pour apprendre à investir avec confiance, à ton rythme, en moins de 2h par semaine." />
   <meta property="og:title" content="Money Smart Invest · Apprendre à investir" />
   <meta property="og:description" content="Le parcours d'éducation financière pour partir de zéro, comprendre les ETF, la bourse et l'immobilier, et construire ton patrimoine en toute autonomie." />
   <meta property="og:type" content="website" />
@@ -146,7 +146,7 @@
 
     .hero-title {
       font-family:'Instrument Sans',sans-serif;
-      font-size:clamp(38px,5.8vw,68px); font-weight:700; line-height:1.05;
+      font-size:clamp(38px,5.8vw,68px); font-weight:700; line-height:1.18;
       color:#fff; margin-bottom:24px; letter-spacing:-.02em;
     }
     .hero-title .hl-y  { background:var(--accent); color:var(--dark); padding:0 8px; border-radius:6px; }
@@ -337,7 +337,12 @@
     @media(max-width:600px){ .bonus-inner{flex-direction:column;} .bonus-stripe{width:100%;height:48px;writing-mode:horizontal-tb;font-size:18px;} }
 
     /* ════════ TESTIMONIALS ════════ */
-    .testi-sec { background:#1E3170; }
+    .testi-sec {
+      background-image:
+        repeating-linear-gradient(0deg,var(--grid) 0,var(--grid) 1px,transparent 1px,transparent 28px),
+        repeating-linear-gradient(90deg,var(--grid) 0,var(--grid) 1px,transparent 1px,transparent 28px),
+        linear-gradient(135deg,#6B8EFF 0%,#4B6EFA 50%,#7C5CFC 100%);
+    }
     .testi-list { display:flex; flex-direction:column; gap:72px; margin-top:64px; }
     .testi-block { display:grid; grid-template-columns:1fr 200px; gap:48px; align-items:center; }
     .testi-block.rev { grid-template-columns:200px 1fr; }
@@ -347,18 +352,18 @@
       font-size:clamp(18px,2.4vw,24px); font-weight:700;
       color:#fff; line-height:1.35; margin-bottom:24px;
     }
-    .testi-body { font-size:15px; color:rgba(255,255,255,.65); line-height:1.8; }
+    .testi-body { font-size:15px; color:rgba(255,255,255,.75); line-height:1.8; }
     .testi-body p + p { margin-top:12px; }
     .testi-photo-col { display:flex; flex-direction:column; align-items:center; gap:16px; }
     .testi-avatar {
       width:160px; height:160px; border-radius:50%;
       object-fit:cover; object-position:top;
-      border:3px solid rgba(255,255,255,.15);
-      box-shadow:0 12px 40px rgba(0,0,0,.4);
+      border:3px solid rgba(255,255,255,.2);
+      box-shadow:0 12px 40px rgba(0,0,0,.3);
     }
     .testi-pname { font-family:'Instrument Sans',sans-serif; font-size:18px; font-weight:700; color:#fff; }
-    .testi-ptag { background:var(--primary); padding:4px 12px; border-radius:999px; font-size:12px; font-weight:600; color:#fff; }
-    .testi-divider { border:none; border-top:1px solid rgba(255,255,255,.07); }
+    .testi-ptag { background:rgba(255,255,255,.15); padding:4px 12px; border-radius:999px; font-size:12px; font-weight:600; color:#fff; }
+    .testi-divider { border:none; border-top:1px solid rgba(255,255,255,.12); }
     @media(max-width:640px){
       .testi-block, .testi-block.rev { grid-template-columns:1fr; text-align:center; }
       .testi-block.rev .testi-photo-col { order:0; }
@@ -457,13 +462,12 @@
     .faq-body strong { color:var(--dark); }
 
     /* ════════ GUARANTEE ════════ */
-    .gua-sec { background:#1E3170; position:relative; overflow:hidden; }
-    .gua-sec::before {
-      content:''; position:absolute; inset:0;
-      background:
-        radial-gradient(ellipse at 30% 50%,rgba(75,110,250,.4),transparent 60%),
-        radial-gradient(ellipse at 70% 50%,rgba(230,250,80,.12),transparent 60%);
-      pointer-events:none;
+    .gua-sec {
+      background: #1E3170;
+      background-image:
+        repeating-linear-gradient(0deg,rgba(107,142,255,0.08) 0,rgba(107,142,255,0.08) 1px,transparent 1px,transparent 28px),
+        repeating-linear-gradient(90deg,rgba(107,142,255,0.08) 0,rgba(107,142,255,0.08) 1px,transparent 1px,transparent 28px);
+      position:relative; overflow:hidden;
     }
     .gua-card {
       position:relative; z-index:1;
@@ -483,22 +487,22 @@
 
     /* ════════ CTA FINAL ════════ */
     .cta-sec {
-      background:#1E3170;
       background-image:
         repeating-linear-gradient(0deg,var(--grid) 0,var(--grid) 1px,transparent 1px,transparent 28px),
-        repeating-linear-gradient(90deg,var(--grid) 0,var(--grid) 1px,transparent 1px,transparent 28px);
+        repeating-linear-gradient(90deg,var(--grid) 0,var(--grid) 1px,transparent 1px,transparent 28px),
+        linear-gradient(135deg,#6B8EFF 0%,#4B6EFA 50%,#7C5CFC 100%);
       text-align:center; padding:100px 24px;
     }
     .cta-ttl { font-family:'Instrument Sans',sans-serif; font-size:clamp(40px,7vw,76px); font-weight:700; color:#fff; letter-spacing:-.02em; margin-bottom:16px; }
     .cta-ttl .acc { color:var(--accent); }
 
     /* ════════ FOOTER ════════ */
-    footer { background:#152554; color:rgba(255,255,255,.35); padding:48px 24px; }
+    footer { background:#F2F2F0; color:#999; padding:48px 24px; }
     footer .fi { max-width:800px; margin:0 auto; }
     footer p { font-size:12px; line-height:1.75; margin-bottom:10px; }
     .fl { display:flex; flex-wrap:wrap; gap:20px; margin-top:24px; padding-top:24px; border-top:1px solid rgba(255,255,255,.07); }
-    .fl a { color:rgba(255,255,255,.35); font-size:12px; text-decoration:underline; transition:color .2s; }
-    .fl a:hover { color:rgba(255,255,255,.65); }
+    .fl a { color:#aaa; font-size:12px; text-decoration:underline; transition:color .2s; }
+    .fl a:hover { color:#555; }
 
     /* ════════ BTN-V ════════ */
     .btn-v {
@@ -624,7 +628,6 @@
           <span class="hl-y">Investir</span> ne devrait<br />
           jamais être <span class="hl-ul">intimidant.</span>
         </h1>
-        <p class="hero-sub">Le parcours d'éducation financière pour partir de zéro et construire ton patrimoine <strong>en moins de 2 heures par mois.</strong></p>
         <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:32px;">
           <a href="#pricing" class="btn-main">Je rejoins Money Smart Invest <span class="arr">→</span></a>
           <a href="#programme" class="btn-ghost">Découvrir le programme</a>
@@ -641,7 +644,7 @@
     <div class="stats-inner">
       <div class="stat-cell r"><div class="stat-num" data-count="33">0</div><div class="stat-lbl">missions financières concrètes</div></div>
       <div class="stat-cell r d1"><div class="stat-num" data-count="315">0</div><div class="stat-lbl">pages de supports pédagogiques</div></div>
-      <div class="stat-cell r d2"><div class="stat-num" data-count="2" data-suffix="h/mois">0</div><div class="stat-lbl">suffisent pour avancer</div></div>
+      <div class="stat-cell r d2"><div class="stat-num" data-count="2" data-suffix="h/semaine">0</div><div class="stat-lbl">suffisent pour avancer</div></div>
     </div>
   </div>
 
@@ -740,7 +743,7 @@
     <section id="programme" class="sec" style="background:#fff;position:relative;z-index:20;">
       <div class="box">
         <div class="label r-fade">JE TE PRÉSENTE LE PARCOURS</div>
-        <h2 class="title r">ET TOI AUSSI TU PEUX APPRENDRE À INVESTIR,<br /><span class="hl-y">en moins de 2h par mois.</span></h2>
+        <h2 class="title r">ET TOI AUSSI TU PEUX APPRENDRE À INVESTIR,<br /><span class="hl-y">en moins de 2h par semaine.</span></h2>
         <p class="sub r">Tu as juste besoin d'un plan clair. C'est parti 🚀</p>
         <img src="695397f67b285_MEF-MOCKUP2-3.jpg" alt="Aperçu du programme Money Smart Invest" class="mockup-img r-fade" loading="lazy" />
         <div class="feat-grid" style="margin-top:52px;">
@@ -883,53 +886,53 @@
 
     <style>
       .sim-box {
-        background: #1E3170;
+        background: #EEF2FF;
         border-radius: 24px;
         padding: 48px 52px;
-        box-shadow: 0 24px 64px rgba(30,49,112,.35);
+        box-shadow: 0 24px 64px rgba(75,110,250,.2);
         position: relative; overflow: hidden;
       }
       .sim-box::before {
         content:''; position:absolute; inset:0;
-        background: repeating-linear-gradient(0deg,rgba(107,142,255,.05) 0,rgba(107,142,255,.05) 1px,transparent 1px,transparent 28px),
-                    repeating-linear-gradient(90deg,rgba(107,142,255,.05) 0,rgba(107,142,255,.05) 1px,transparent 1px,transparent 28px);
+        background: repeating-linear-gradient(0deg,rgba(75,110,250,.06) 0,rgba(75,110,250,.06) 1px,transparent 1px,transparent 28px),
+                    repeating-linear-gradient(90deg,rgba(75,110,250,.06) 0,rgba(75,110,250,.06) 1px,transparent 1px,transparent 28px);
         pointer-events:none;
       }
       .sim-box > * { position:relative; z-index:1; }
-      .sim-headline { text-align:center; font-family:'Instrument Sans',sans-serif; font-size:clamp(16px,2vw,20px); font-weight:500; color:rgba(255,255,255,.6); margin-bottom:6px; line-height:1.5; }
-      .sim-hl { color:var(--accent); font-weight:700; }
-      .sim-amount { color:var(--accent); font-weight:700; font-size:clamp(36px,5vw,64px); display:block; margin-top:2px; letter-spacing:-.02em; }
+      .sim-headline { text-align:center; font-family:'Instrument Sans',sans-serif; font-size:clamp(16px,2vw,20px); font-weight:500; color:var(--dark); margin-bottom:6px; line-height:1.5; }
+      .sim-hl { color:var(--primary); font-weight:700; }
+      .sim-amount { color:var(--primary); font-weight:700; font-size:clamp(36px,5vw,64px); display:block; margin-top:2px; letter-spacing:-.02em; }
       .sim-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:36px 0 28px; }
-      .sim-label { display:block; font-size:12px; font-weight:600; color:rgba(255,255,255,.45); margin-bottom:8px; text-transform:uppercase; letter-spacing:.06em; }
+      .sim-label { display:block; font-size:12px; font-weight:600; color:var(--dark); margin-bottom:8px; text-transform:uppercase; letter-spacing:.06em; opacity:.6; }
       .sim-input-wrap { position:relative; }
       .sim-input {
         width:100%; padding:14px 36px 14px 16px; border-radius:12px;
-        border:1.5px solid rgba(255,255,255,.15);
+        border:1.5px solid rgba(75,110,250,.25);
         font-family:'Instrument Sans',sans-serif;
-        font-size:22px; font-weight:700; color:#fff;
-        background:rgba(255,255,255,.08); outline:none; text-align:center;
+        font-size:22px; font-weight:700; color:var(--dark);
+        background:rgba(255,255,255,.55); outline:none; text-align:center;
         transition:border-color .2s, background .2s;
       }
-      .sim-input:focus { border-color:var(--accent); background:rgba(255,255,255,.12); }
-      .sim-unit { position:absolute; right:12px; top:50%; transform:translateY(-50%); font-weight:600; color:rgba(255,255,255,.3); font-size:15px; }
+      .sim-input:focus { border-color:var(--primary); background:rgba(255,255,255,.8); }
+      .sim-unit { position:absolute; right:12px; top:50%; transform:translateY(-50%); font-weight:600; color:var(--dark); font-size:15px; opacity:.4; }
       .sim-range {
         -webkit-appearance:none; width:100%; height:4px;
-        border-radius:4px; background:rgba(255,255,255,.15); outline:none; cursor:pointer; margin-top:10px;
+        border-radius:4px; background:rgba(75,110,250,.2); outline:none; cursor:pointer; margin-top:10px;
       }
       .sim-range::-webkit-slider-thumb {
         -webkit-appearance:none; width:20px; height:20px;
-        border-radius:50%; background:var(--accent);
-        box-shadow:0 2px 8px rgba(230,250,80,.4); cursor:pointer;
+        border-radius:50%; background:var(--primary);
+        box-shadow:0 2px 8px rgba(75,110,250,.4); cursor:pointer;
       }
       .sim-results { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:28px; }
       .sim-result { text-align:center; }
-      .sim-result span { font-size:11px; font-weight:600; color:rgba(255,255,255,.4); text-transform:uppercase; letter-spacing:.1em; display:block; margin-bottom:8px; }
+      .sim-result span { font-size:11px; font-weight:600; color:var(--dark); opacity:.6; text-transform:uppercase; letter-spacing:.1em; display:block; margin-bottom:8px; }
       .sim-num { padding:18px 10px; border-radius:14px; font-family:'Instrument Sans',sans-serif; font-size:clamp(15px,1.8vw,21px); font-weight:700; }
-      .sim-num--invested { background:rgba(255,255,255,.08); color:rgba(255,255,255,.85); border:1px solid rgba(255,255,255,.12); }
-      .sim-num--gain { background:rgba(255,255,255,.08); color:rgba(255,255,255,.85); border:1px solid rgba(255,255,255,.12); }
-      .sim-num--final { background:var(--accent); color:var(--dark); font-size:clamp(17px,2vw,24px); box-shadow:0 8px 28px rgba(3,253,169,.25); }
-      .sim-chart-wrap { margin-top:32px; background:rgba(255,255,255,.04); border-radius:14px; padding:20px 16px 8px; }
-      .sim-disclaimer { text-align:center; margin-top:20px; font-size:11px; color:rgba(255,255,255,.25); line-height:1.7; }
+      .sim-num--invested { background:rgba(255,255,255,.7); color:var(--dark); border:1px solid rgba(75,110,250,.12); }
+      .sim-num--gain { background:rgba(255,255,255,.7); color:var(--dark); border:1px solid rgba(75,110,250,.12); }
+      .sim-num--final { background:var(--accent); color:var(--dark); font-size:clamp(17px,2vw,24px); box-shadow:0 8px 28px rgba(3,253,169,.3); }
+      .sim-chart-wrap { margin-top:32px; background:rgba(255,255,255,.3); border-radius:14px; padding:20px 16px 8px; }
+      .sim-disclaimer { text-align:center; margin-top:20px; font-size:11px; color:rgba(30,49,112,.4); line-height:1.7; }
       @media(max-width:640px){
         .sim-box { padding:28px 20px; }
         .sim-grid, .sim-results { grid-template-columns:1fr; }
@@ -989,8 +992,8 @@
           data:{
             labels,
             datasets:[
-              { data:investedData, fill:true, backgroundColor:'rgba(3,253,169,0.18)', borderColor:'rgba(3,253,169,0)', borderWidth:0, stack:'t', pointRadius:0, pointHoverRadius:0, pointHitRadius:0, tooltip:{enabled:false} },
-              { data:interestData, fill:true, backgroundColor:'rgba(3,253,169,0.6)', borderColor:'rgba(3,253,169,0)', borderWidth:0, stack:'t', pointRadius:0, pointHoverRadius:0, pointHitRadius:12 }
+              { data:investedData, fill:true, backgroundColor:'rgba(75,110,250,0.35)', borderColor:'rgba(75,110,250,0)', borderWidth:0, stack:'t', pointRadius:0, pointHoverRadius:0, pointHitRadius:0, tooltip:{enabled:false} },
+              { data:interestData, fill:true, backgroundColor:'rgba(3,253,169,0.65)', borderColor:'rgba(3,253,169,0)', borderWidth:0, stack:'t', pointRadius:0, pointHoverRadius:0, pointHitRadius:12 }
             ]
           },
           options:{
@@ -1011,8 +1014,8 @@
               }
             },
             scales:{
-              x:{stacked:true, ticks:{color:'rgba(255,255,255,.4)',font:{family:'Instrument Sans',size:11}}, grid:{color:'rgba(255,255,255,.06)'}},
-              y:{stacked:true, ticks:{callback:v=>v.toLocaleString('fr-FR')+' €',color:'rgba(255,255,255,.4)',font:{family:'Instrument Sans',size:11}}, grid:{color:'rgba(255,255,255,.06)'}}
+              x:{stacked:true, ticks:{color:'rgba(30,49,112,.5)',font:{family:'Instrument Sans',size:11}}, grid:{color:'rgba(75,110,250,.1)'}},
+              y:{stacked:true, ticks:{callback:v=>v.toLocaleString('fr-FR')+' €',color:'rgba(30,49,112,.5)',font:{family:'Instrument Sans',size:11}}, grid:{color:'rgba(75,110,250,.1)'}}
             }
           }
         });
@@ -1080,7 +1083,7 @@
     <section class="sec testi-sec" style="position:relative;z-index:20;">
       <div class="box-wide">
         <div style="text-align:center;">
-          <div class="label" style="justify-content:center;color:rgba(255,255,255,.3);">Les victoires de nos membres 🎉</div>
+          <div class="label" style="justify-content:center;color:rgba(255,255,255,.5);">Les victoires de nos membres 🎉</div>
           <h2 class="title" style="color:#fff;text-align:center;">Voilà le genre de message<br />que tu m'enverras bientôt</h2>
         </div>
         <div class="testi-list">
@@ -1179,11 +1182,17 @@
     </div>
   </section>
 
+  <!-- ══ PHOTO SARAH JARDIN ══ -->
+  <div style="background:var(--white);padding:40px 20px;display:flex;justify-content:center;">
+    <img src="sarah jardin.jpg" alt="Sarah dans son jardin" loading="lazy"
+      style="width:100%;max-width:340px;border-radius:24px;display:block;box-shadow:0 12px 40px rgba(0,0,0,.1);">
+  </div>
+
   <!-- ══ CE DONT TU N'AS PAS BESOIN ══ -->
   <section class="sec" style="background:var(--white);">
     <div class="box" style="text-align:center;">
-      <div class="label" style="justify-content:center;">ON T'A APPRIS À CONSOMMER.</div>
-      <h2 class="title" style="text-align:center;">Pas à investir.<br /><span class="hl-ul">Ça s'arrête aujourd'hui.</span></h2>
+      <div class="label" style="justify-content:center;">LE PROBLÈME DONT PERSONNE NE PARLE.</div>
+      <h2 class="title" style="text-align:center;">On t'a appris à consommer.<br />Pas à investir.<br /><span class="hl-ul">Ça s'arrête aujourd'hui.</span></h2>
       <p class="sub" style="margin:0 auto 44px;">Ce dont tu n'as <strong>pas</strong> besoin pour commencer :</p>
       <div class="dn-grid" style="text-align:left;">
         <div class="dn-item r"><div class="dn-ttl"><span class="x">❌</span> Un salaire à six chiffres</div><p>C'est ce que tu fais avec ton argent, pas combien tu gagnes.</p></div>
@@ -1335,7 +1344,7 @@
   <!-- ══ FOOTER ══ -->
   <footer>
     <div class="fi">
-      <p style="font-weight:600;color:rgba(255,255,255,.45);margin-bottom:12px;">📌 Avertissement légal</p>
+      <p style="font-weight:600;color:#777;margin-bottom:12px;">📌 Avertissement légal</p>
       <p>Ce programme a une visée éducative uniquement : il ne s'agit ni de conseils financiers personnalisés, ni d'une incitation à acheter un actif ou un produit financier. Tu apprends à comprendre, structurer et piloter ta stratégie d'investissement en toute autonomie et en connaissance de cause.</p>
       <p>Il ne constitue en aucun cas un conseil en investissement, une recommandation personnalisée ou une incitation à acheter ou vendre un produit financier. Les décisions d'investissement relèvent de la seule responsabilité du participant.</p>
       <div class="fl">
@@ -1343,7 +1352,7 @@
         <a href="https://www.canva.com/design/DAG-FO5oq3M/ToK7KJUxsY9fV7ZLx62sYw/view" target="_blank" rel="noopener">Mentions légales</a>
         <a href="https://www.canva.com/design/DAGj_CrHOmc/Uv-kVmbWEYS_xYCASWXmng/view" target="_blank" rel="noopener">Politique de confidentialité</a>
       </div>
-      <p style="margin-top:18px;font-size:11px;color:rgba(255,255,255,.15);">© 2026 Mon Éducation Financière · Sarah (Mimi) · moneducationfinanciere.com</p>
+      <p style="margin-top:18px;font-size:11px;color:#bbb;">© 2026 Mon Éducation Financière · Sarah (Mimi) · moneducationfinanciere.com</p>
     </div>
   </footer>
 
