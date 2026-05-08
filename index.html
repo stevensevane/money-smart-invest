@@ -1230,7 +1230,7 @@
   </section>
 
   <!-- ══ PRICING ══ -->
-  <section id="pricing" class="sec" style="background:var(--bg);">
+  <section id="pricing" class="sec" style="background:var(--bg);scroll-margin-top:48px;">
     <div class="box-wide">
       <div style="text-align:center;">
         <div class="label" style="justify-content:center;">CHOISIS TA FORMULE</div>
@@ -1266,8 +1266,8 @@
           <div class="p-tier">MONEY SMART INVEST</div>
           <div class="p-name">COMPLET</div>
           <div class="p-desc">Devenir autonome sur tous tes investissements</div>
-          <div class="p-price" id="price-complet" data-promo="497" data-regular="997"><sup>€</sup>497</div>
-          <div class="p-old-price promo-only">au lieu de <s>997 €</s></div>
+          <div class="p-price" id="price-complet" data-promo="497" data-regular="994"><sup>€</sup>497</div>
+          <div class="p-old-price promo-only">au lieu de <s>994 €</s></div>
           <ul class="p-feats">
             <li><span class="ok">✅</span> Accès à ton rythme pendant 1 an</li>
             <li><span class="ok">✅</span> Questions sur WhatsApp</li>
@@ -1280,7 +1280,7 @@
             <li><span class="ok">✅</span> <strong>Pilier Alternatifs</strong></li>
             <li class="grey"><span class="no">❌</span> 2 Money Dates privées</li>
           </ul>
-          <a href="https://www.moneducationfinanciere.com/paiement_smart_invest-360-v2" class="btn-p btn-p-accent">Je deviens autonome sur tout →</a>
+          <a href="https://www.moneducationfinanciere.com/paiement_smart_invest-360-v2" id="btn-complet" data-regular-href="https://www.moneducationfinanciere.com/paiement_smart_invest-360-normal" class="btn-p btn-p-accent">Je deviens autonome sur tout →</a>
         </div>
         <div class="p-card r d2">
           <div class="p-tier">MONEY SMART INVEST</div>
@@ -1300,7 +1300,7 @@
             <li><span class="ok">✅</span> <strong>Pilier Alternatifs</strong></li>
             <li><span class="ok">✅</span> <strong>2 Money Dates privées (2 × 75 min)</strong></li>
           </ul>
-          <a href="https://www.moneducationfinanciere.com/paiement_smart_invest-1t1-v2" class="btn-p btn-p-soft">Je veux l'accompagnement Sarah →</a>
+          <a href="https://www.moneducationfinanciere.com/paiement_smart_invest-1t1-v2" id="btn-1t1" data-regular-href="https://www.moneducationfinanciere.com/paiement_smart_invest-1t1-normal" class="btn-p btn-p-soft">Je veux l'accompagnement avec Sarah →</a>
         </div>
       </div>
       <div style="max-width:640px;margin:52px auto 0;" class="r">
@@ -1424,6 +1424,11 @@
         ['price-complet','price-1t1'].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.innerHTML = '<sup>€</sup>' + el.dataset.regular;
+        });
+        // Met les liens normaux
+        ['btn-complet','btn-1t1'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el && el.dataset.regularHref) el.href = el.dataset.regularHref;
         });
         // Barre du haut
         const bar = document.getElementById('top-promo-bar');
