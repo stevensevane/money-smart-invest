@@ -724,7 +724,7 @@
             </div>
           </div>
           <div class="r-right" style="text-align:center;">
-            <img src="sarah-goingtoworkhk-blur.jpg" alt="Sarah à Hong Kong" style="width:100%;max-width:380px;border-radius:20px;object-fit:cover;box-shadow:0 20px 60px rgba(0,0,0,.1);" loading="lazy" />
+            <img src="sarah-goingtoworkhk-blur.jpg" alt="Sarah à Hong Kong" style="width:100%;max-width:380px;border-radius:20px;object-fit:cover;box-shadow:0 20px 60px rgba(0,0,0,.1);" />
             <p style="margin-top:14px;font-size:13px;color:#999;font-style:italic;">Baby Sarah à Hong Kong, en banque d'investissement.</p>
           </div>
         </div>
@@ -767,7 +767,7 @@
         <div class="label r-fade">JE TE PRÉSENTE LE PARCOURS</div>
         <h2 class="title r">ET TOI AUSSI TU PEUX APPRENDRE À INVESTIR SANS T'ARRACHER LES CHEVEUX,<br /><span class="hl-y">en moins de 2h par semaine.</span></h2>
         <p class="sub r">Tu as juste besoin d'un plan clair. C'est parti 🚀</p>
-        <img src="695397f67b285_MEF-MOCKUP2-3.jpg" alt="Aperçu du programme Money Smart Invest" class="mockup-img r-fade" loading="lazy" />
+        <img src="695397f67b285_MEF-MOCKUP2-3.jpg" alt="Aperçu du programme Money Smart Invest" class="mockup-img r-fade" />
         <div class="feat-grid" style="margin-top:52px;">
           <div class="feat-card r-left"><span class="feat-icon">🧭</span><div class="feat-ttl">Parcours 100 % autonome</div><div class="feat-dsc">Sans live ni atelier : tu avances à ton rythme, quand tu veux.</div></div>
           <div class="feat-card r d1"><span class="feat-icon">🧩</span><div class="feat-ttl">33 missions financières</div><div class="feat-dsc">Concrètes, pour passer à l'action étape par étape.</div></div>
@@ -1123,7 +1123,7 @@
               </div>
             </div>
             <div class="testi-photo-col">
-              <img src="salma.jpg" alt="Salma" class="testi-avatar" loading="lazy" />
+              <img src="salma.jpg" alt="Salma" class="testi-avatar" />
               <div class="testi-pname">Salma</div>
               <span class="testi-ptag">+10 000 € investis</span>
             </div>
@@ -1143,7 +1143,7 @@
               </div>
             </div>
             <div class="testi-photo-col">
-              <img src="sabrina.jpg" alt="Sabrina" class="testi-avatar" loading="lazy" />
+              <img src="sabrina.jpg" alt="Sabrina" class="testi-avatar" />
               <div class="testi-pname">Sabrina</div>
               <span class="testi-ptag">Erreurs coûteuses évitées</span>
             </div>
@@ -1164,7 +1164,7 @@
               </div>
             </div>
             <div class="testi-photo-col">
-              <img src="Alice.jpg" alt="Alice" class="testi-avatar" loading="lazy" />
+              <img src="Alice.jpg" alt="Alice" class="testi-avatar" />
               <div class="testi-pname">Alice</div>
               <span class="testi-ptag">Patrimoine structuré</span>
             </div>
@@ -1173,7 +1173,7 @@
         </div>
         <div style="text-align:center;margin-top:56px;" class="r">
           <p style="color:rgba(255,255,255,.4);font-size:13px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:20px;">Un aperçu des messages reçus…</p>
-          <img src="mur-avis.webp" alt="Témoignages membres Money Smart Invest" class="proof-img" loading="lazy" />
+          <img src="mur-avis.webp" alt="Témoignages membres Money Smart Invest" class="proof-img" />
         </div>
         <div style="text-align:center;margin-top:48px;" class="r">
           <a href="#pricing" class="btn-main">Je réserve ma place <span class="arr">→</span></a>
@@ -1206,7 +1206,7 @@
 
   <!-- ══ PHOTO SARAH JARDIN ══ -->
   <div style="background:var(--white);padding:40px 20px;display:flex;justify-content:center;">
-    <img src="sarah jardin.jpg" alt="Sarah dans son jardin" loading="lazy"
+    <img src="sarah jardin.jpg" alt="Sarah dans son jardin"
       style="width:100%;max-width:340px;border-radius:24px;display:block;box-shadow:0 12px 40px rgba(0,0,0,.1);">
   </div>
 
@@ -1230,7 +1230,7 @@
   </section>
 
   <!-- ══ PRICING ══ -->
-  <section id="pricing" class="sec" style="background:var(--bg);scroll-margin-top:48px;">
+  <section id="pricing" class="sec" style="background:var(--bg);">
     <div class="box-wide">
       <div style="text-align:center;">
         <div class="label" style="justify-content:center;">CHOISIS TA FORMULE</div>
@@ -1456,6 +1456,18 @@
 
       var timerInterval;
     })();
+
+    // Fix scroll vers #pricing (calcul dynamique au clic)
+    document.querySelectorAll('a[href="#pricing"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.getElementById('pricing');
+        if (target) {
+          const y = target.getBoundingClientRect().top + window.pageYOffset - 100;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      });
+    });
 
     // Scroll reveal
     const obs = new IntersectionObserver(entries => {
