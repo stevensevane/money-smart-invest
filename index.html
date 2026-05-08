@@ -423,6 +423,15 @@
     .p-old-price s { text-decoration-color:#999; font-size:17px; }
     .p-card.pop .p-old-price { color:rgba(255,255,255,.55); }
     .p-card.pop .p-old-price s { text-decoration-color:rgba(255,255,255,.55); }
+    /* ── Promo timer ── */
+    #top-promo-bar { background:var(--primary); color:#fff; text-align:center; padding:10px 20px; font-size:14px; font-weight:600; line-height:1.5; position:relative; z-index:1000; }
+    #top-promo-bar.expired { background:#ff6d89; font-weight:600; font-size:16px; }
+    #top-promo-bar .cd { display:inline-block; font-family:'Instrument Sans',sans-serif; font-size:18px; font-weight:700; color:var(--accent); letter-spacing:.05em; margin:0 4px; }
+    .pricing-timer { background:#EEF1FF; border:2px solid var(--primary); border-radius:14px; padding:16px 24px; text-align:center; margin-bottom:36px; }
+    .pricing-timer p { margin:0; font-size:14px; color:var(--dark); font-weight:500; }
+    .pricing-timer .cd-big { display:inline-block; font-family:'Instrument Sans',sans-serif; font-size:28px; font-weight:700; color:var(--primary); letter-spacing:.06em; margin:4px 0 0; }
+    .pricing-timer.expired { background:#fff0f3; border-color:#ff6d89; }
+    .pricing-timer.expired p { color:#ff6d89; font-size:17px; font-weight:600; }
     .p-card.pop .p-tier { color:var(--soft); }
     .p-card.pop .p-name { color:#fff; }
     .p-card.pop .p-desc { color:rgba(255,255,255,.55); }
@@ -595,6 +604,11 @@
   </style>
 </head>
 <body>
+
+  <!-- ══ TOP PROMO BAR ══ -->
+  <div id="top-promo-bar">
+    💸 Économise jusqu'à 997 € · Offre valable encore <span id="top-cd" class="cd">--:--:--</span>
+  </div>
 
   <!-- ══ STICKY NAV ══ -->
   <nav class="snav" id="snav">
@@ -1221,7 +1235,11 @@
       <div style="text-align:center;">
         <div class="label" style="justify-content:center;">CHOISIS TA FORMULE</div>
         <h2 class="title" style="text-align:center;">Rejoins Money Smart Invest</h2>
-        <p class="sub" style="margin:0 auto 52px;">Accès pendant 1 an · Garantie satisfaite ou remboursée 14 jours</p>
+        <p class="sub" style="margin:0 auto 28px;">Accès pendant 1 an · Garantie satisfaite ou remboursée 14 jours</p>
+        <div class="pricing-timer r" id="pricing-timer">
+          <p>⏳ Offre de lancement — tarifs réduits disponibles encore</p>
+          <div id="pricing-cd" class="cd-big">--:--:--</div>
+        </div>
       </div>
       <div class="pricing-grid">
         <div class="p-card r">
@@ -1248,8 +1266,8 @@
           <div class="p-tier">MONEY SMART INVEST</div>
           <div class="p-name">COMPLET</div>
           <div class="p-desc">Devenir autonome sur tous tes investissements</div>
-          <div class="p-price"><sup>€</sup>497</div>
-          <div class="p-old-price">au lieu de <s>997 €</s></div>
+          <div class="p-price" id="price-complet" data-promo="497" data-regular="997"><sup>€</sup>497</div>
+          <div class="p-old-price promo-only">au lieu de <s>997 €</s></div>
           <ul class="p-feats">
             <li><span class="ok">✅</span> Accès à ton rythme pendant 1 an</li>
             <li><span class="ok">✅</span> Questions sur WhatsApp</li>
@@ -1268,8 +1286,8 @@
           <div class="p-tier">MONEY SMART INVEST</div>
           <div class="p-name">1 TO 1</div>
           <div class="p-desc">Avancer avec un cadre personnalisé</div>
-          <div class="p-price"><sup>€</sup>997</div>
-          <div class="p-old-price">au lieu de <s>1 994 €</s></div>
+          <div class="p-price" id="price-1t1" data-promo="997" data-regular="1 994"><sup>€</sup>997</div>
+          <div class="p-old-price promo-only">au lieu de <s>1 994 €</s></div>
           <ul class="p-feats">
             <li><span class="ok">✅</span> Accès à ton rythme pendant 1 an</li>
             <li><span class="ok">✅</span> Questions sur WhatsApp</li>
@@ -1381,6 +1399,59 @@
   </div>
 
   <script>
+    // ── Promo timer 72h (evergreen par visiteur) ──
+    (function() {
+      const KEY = 'msi_promo_start';
+      const DURATION = 72 * 60 * 60 * 1000;
+      let start = parseInt(localStorage.getItem(KEY));
+      if (!start) { start = Date.now(); localStorage.setItem(KEY, start); }
+      const deadline = start + DURATION;
+
+      function fmt(ms) {
+        if (ms <= 0) return '0 jour 0h 0min 0s';
+        const d = Math.floor(ms / 86400000);
+        const h = Math.floor((ms % 86400000) / 3600000);
+        const m = Math.floor((ms % 3600000) / 60000);
+        const s = Math.floor((ms % 60000) / 1000);
+        const dStr = d > 0 ? d + (d > 1 ? ' jours ' : ' jour ') : '';
+        return dStr + h + 'h ' + m + 'min ' + s + 's';
+      }
+
+      function applyExpired() {
+        // Masque les lignes "au lieu de"
+        document.querySelectorAll('.promo-only').forEach(el => el.style.display = 'none');
+        // Met les prix normaux
+        ['price-complet','price-1t1'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.innerHTML = '<sup>€</sup>' + el.dataset.regular;
+        });
+        // Barre du haut
+        const bar = document.getElementById('top-promo-bar');
+        if (bar) { bar.classList.add('expired'); bar.textContent = 'L\'offre promotionnelle est terminée — tarifs normaux appliqués.'; }
+        // Timer pricing
+        const pt = document.getElementById('pricing-timer');
+        if (pt) { pt.classList.add('expired'); pt.innerHTML = '<p>L\'offre promotionnelle est terminée.</p>'; }
+      }
+
+      function tick() {
+        const remaining = deadline - Date.now();
+        const display = fmt(remaining);
+        const topCd = document.getElementById('top-cd');
+        const pricingCd = document.getElementById('pricing-cd');
+        if (topCd) topCd.textContent = display;
+        if (pricingCd) pricingCd.textContent = display;
+        if (remaining <= 0) { applyExpired(); clearInterval(timerInterval); }
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        if (new URLSearchParams(location.search).get('expired') === '1' || deadline - Date.now() <= 0) { applyExpired(); return; }
+        tick();
+        timerInterval = setInterval(tick, 1000);
+      });
+
+      var timerInterval;
+    })();
+
     // Scroll reveal
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
