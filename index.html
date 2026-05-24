@@ -15,6 +15,22 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/stevensevane/money-smart-invest/main/og-image.jpeg" />
 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8C6NQTZCVL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8C6NQTZCVL', { send_page_view: true });
+  </script>
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "ww6epfzych");
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
@@ -1475,8 +1491,17 @@
     .reframe-good { background:#F0FFF9; border:1.5px solid var(--accent); }
     .reframe-head { font-family:'Instrument Sans',sans-serif; font-size:17px; font-weight:700; color:var(--dark); margin-bottom:18px; display:flex; align-items:center; gap:10px; }
     .reframe-list { list-style:none; }
-    .reframe-list li { font-size:15px; color:#444; padding:7px 0; line-height:1.5; padding-left:18px; position:relative; }
-    .reframe-list li::before { content:'·'; position:absolute; left:6px; top:5px; color:var(--primary); font-weight:700; font-size:20px; }
+    .reframe-list li { font-size:15px; color:#444; padding:10px 0 10px 22px; line-height:1.55; position:relative; border-top:1px solid #f0f0f0; }
+    .reframe-list li:first-child { border-top:none; }
+    .reframe-list li::before { content:'›'; position:absolute; left:6px; top:9px; color:var(--primary); font-weight:700; }
+    .reframe-bad .reframe-list li { border-top-color:#fad8d8; }
+    .reframe-bad .reframe-list li::before { color:#ef4444; }
+    .reframe-good .reframe-list li { border-top-color:#cdfae5; }
+    .reframe-good .reframe-list li::before { color:#10b981; }
+    @media(max-width:640px){
+      .reframe-list li { padding-left:0; text-align:center; }
+      .reframe-list li::before { display:none; }
+    }
     .qual-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
     .qual-col { background:#fff; border-radius:18px; padding:28px 30px; border:1.5px solid #e8e8e8; }
     .qual-yes { border-color:var(--accent); background:linear-gradient(135deg,#f0fff9 0%,#fff 70%); }
@@ -1808,6 +1833,86 @@
         scta.classList.toggle('visible', y > heroH * 0.7 && !nearPricing);
       }
     }, { passive: true });
+  </script>
+
+  <script>
+    (function () {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+        if (window.clarity) window.clarity('event', name);
+      }
+
+      function ctaLocation(el) {
+        if (el.closest('.snav')) return 'nav';
+        if (el.closest('#hero, .hero')) return 'hero';
+        if (el.id === 'scta-btn' || el.closest('.scta')) return 'sticky_mobile';
+        if (el.closest('#pricing')) return 'pricing_block';
+        var section = el.closest('section');
+        if (section && section.id) return section.id;
+        return 'unknown';
+      }
+
+      function ctaLabel(el) {
+        return (el.innerText || el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 60);
+      }
+
+      document.addEventListener('click', function (e) {
+        var checkout = e.target.closest('#btn-complet');
+        if (checkout) {
+          var isPromo = checkout.getAttribute('href') && checkout.getAttribute('href').indexOf('promo') !== -1;
+          track('checkout_click', {
+            offer_type: isPromo ? 'promo' : 'regular',
+            cta_label: ctaLabel(checkout),
+            cta_location: 'pricing_block'
+          });
+          return;
+        }
+        var internal = e.target.closest('.btn-main, .snav-cta, .scta-btn');
+        if (internal && internal.getAttribute('href') && internal.getAttribute('href').charAt(0) === '#') {
+          track('cta_click', {
+            cta_label: ctaLabel(internal),
+            cta_location: ctaLocation(internal),
+            cta_target: internal.getAttribute('href')
+          });
+        }
+      }, true);
+
+      function addUtm(href, location) {
+        try {
+          var u = new URL(href);
+          if (!u.searchParams.get('utm_source')) {
+            u.searchParams.set('utm_source', 'salespage');
+            u.searchParams.set('utm_medium', 'cta_' + location);
+            u.searchParams.set('utm_campaign', 'msi_mensuel');
+          }
+          return u.toString();
+        } catch (_) { return href; }
+      }
+
+      function decorateCheckout() {
+        var btn = document.getElementById('btn-complet');
+        if (!btn) return;
+        ['href', 'data-regular-href'].forEach(function (attr) {
+          var v = btn.getAttribute(attr);
+          if (v && v.indexOf('moneducationfinanciere.com') !== -1) {
+            btn.setAttribute(attr, addUtm(v, 'pricing_block'));
+          }
+        });
+      }
+      decorateCheckout();
+      var mo = new MutationObserver(decorateCheckout);
+      var target = document.getElementById('btn-complet');
+      if (target) mo.observe(target, { attributes: true, attributeFilter: ['href', 'data-regular-href'] });
+
+      var marks = [25, 50, 75, 90], fired = {};
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var pct = Math.round(((window.scrollY + window.innerHeight) / h.scrollHeight) * 100);
+        marks.forEach(function (m) {
+          if (pct >= m && !fired[m]) { fired[m] = true; track('scroll_depth', { percent: m }); }
+        });
+      }, { passive: true });
+    })();
   </script>
 </body>
 </html>
