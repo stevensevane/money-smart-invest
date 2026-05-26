@@ -1898,14 +1898,12 @@
         ['href', 'data-regular-href'].forEach(function (attr) {
           var v = btn.getAttribute(attr);
           if (v && v.indexOf('moneducationfinanciere.com') !== -1) {
-            btn.setAttribute(attr, addUtm(v, 'pricing_block'));
+            var decorated = addUtm(v, 'pricing_block');
+            if (decorated !== v) btn.setAttribute(attr, decorated);
           }
         });
       }
       decorateCheckout();
-      var mo = new MutationObserver(decorateCheckout);
-      var target = document.getElementById('btn-complet');
-      if (target) mo.observe(target, { attributes: true, attributeFilter: ['href', 'data-regular-href'] });
 
       var marks = [25, 50, 75, 90], fired = {};
       window.addEventListener('scroll', function () {
