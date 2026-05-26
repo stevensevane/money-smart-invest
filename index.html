@@ -1728,8 +1728,11 @@
     (function() {
       const KEY = 'msi_promo_start';
       const DURATION = 72 * 60 * 60 * 1000;
-      let start = parseInt(localStorage.getItem(KEY));
-      if (!start) { start = Date.now(); localStorage.setItem(KEY, start); }
+      let start = null;
+      try {
+        start = parseInt(localStorage.getItem(KEY));
+        if (!start || isNaN(start)) { start = Date.now(); localStorage.setItem(KEY, start); }
+      } catch(e) { start = Date.now(); }
       const deadline = start + DURATION;
 
       function fmt(ms) {
