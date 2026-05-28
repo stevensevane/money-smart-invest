@@ -587,6 +587,10 @@
     /* ════════ MOCKUP ════════ */
     .mockup-img { display:block; width:100%; max-width:780px; margin:52px auto 0; border-radius:14px; box-shadow:0 20px 60px rgba(75,110,250,.12); }
 
+    /* Pricing sub helpers */
+    .br-mobile { display:none; }
+    @media(max-width:640px){ .br-mobile { display:inline; } .sep-desktop { display:none; } }
+
     /* ════════ STICKY NAV ════════ */
     .snav {
       position:fixed; top:0; left:0; right:0; z-index:200;
@@ -683,7 +687,6 @@
     <div class="hero-bg"></div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
     <svg class="hero-shape hs1" width="56" height="56" viewBox="0 0 56 56" fill="none"><rect x="4" y="4" width="48" height="48" rx="13" stroke="white" stroke-width="2.5"/></svg>
     <svg class="hero-shape hs2" width="44" height="44" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="18" stroke="white" stroke-width="2.5"/></svg>
     <svg class="hero-shape hs3" width="38" height="38" viewBox="0 0 38 38" fill="none"><polygon points="19,3 35,35 3,35" stroke="white" stroke-width="2.5" fill="none"/></svg>
@@ -1592,8 +1595,8 @@
       <div style="text-align:center;">
         <div class="label" style="justify-content:center;">LA MÉTHODE COMPLÈTE</div>
         <h2 class="title" style="text-align:center;">Rejoins Money Smart Invest</h2>
-        <p class="sub" style="margin:0 auto 8px;">Accès pendant 1 an<span class="sep-desktop"> · </span><br class="br-mobile"/>Garantie satisfaite ou remboursée 14 jours<style>.br-mobile{display:none;}@media(max-width:640px){.br-mobile{display:inline;}.sep-desktop{display:none;}}</style></p>
-        <p style="text-align:center;color:rgba(255,255,255,.65);font-size:14px;font-style:italic;margin:0 auto 28px;">Tu ne prends aucun risque.</p>
+        <p class="sub" style="margin:0 auto 8px;">Accès pendant 1 an<span class="sep-desktop"> · </span><br class="br-mobile"/>Garantie satisfaite ou remboursée 14 jours</p>
+        <p style="text-align:center;color:#666;font-size:14px;font-style:italic;margin:0 auto 28px;">Tu ne prends aucun risque.</p>
         <div class="pricing-timer r" id="pricing-timer">
           <p>⏳ Tarif préférentiel encore disponible pendant</p>
           <div id="pricing-cd" class="cd-big">--:--:--</div>
@@ -1744,6 +1747,7 @@
   <script>
     // ── Promo timer 72h (evergreen par visiteur) ──
     (function() {
+      var timerInterval;
       const KEY = 'msi_promo_start';
       const DURATION = 72 * 60 * 60 * 1000;
       let start = null;
@@ -1797,8 +1801,6 @@
         tick();
         timerInterval = setInterval(tick, 1000);
       });
-
-      var timerInterval;
     })();
 
     // Fix scroll vers #pricing (calcul dynamique au clic)
