@@ -145,10 +145,13 @@
       box-shadow:0 32px 80px rgba(0,0,0,.35);
       display:block;
     }
-    .hero-video-inline {
-      width:100%; max-width:420px; border-radius:20px;
+    .hero-video-wrap {
+      max-width:420px; width:100%;
+      border-radius:20px; overflow:hidden;
       box-shadow:0 32px 80px rgba(0,0,0,.35);
-      display:block;
+    }
+    .hero-video-inline {
+      width:100%; display:block; background:#000;
     }
 
     @media(max-width:1024px){
@@ -702,9 +705,11 @@
         </h1>
         <!-- Vidéo Sarah mobile uniquement (juste sous le H1) -->
         <div class="hero-photo-mobile" style="display:none;justify-content:center;margin-top:28px;">
-          <video class="hero-video-inline" playsinline controls poster="thumbnail-video.jpg" style="max-width:300px;">
-            <source src="https://pub-261806ada5a047c1b2fa47b9280f2a37.r2.dev/video-courte-msi.mp4" type="video/mp4">
-          </video>
+          <div class="hero-video-wrap" style="max-width:300px;">
+            <video class="hero-video-inline" playsinline controls poster="thumbnail-video.jpg">
+              <source src="https://pub-261806ada5a047c1b2fa47b9280f2a37.r2.dev/video-courte-msi.mp4" type="video/mp4">
+            </video>
+          </div>
         </div>
         <p class="hero-sub" style="margin:22px 0 0;max-width:580px;">Un parcours guidé avec un <strong style="color:#fff;">bilan mensuel personnel pendant 6 mois</strong>, pour construire ta stratégie d'investissement.</p>
         <div class="hero-trust" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;max-width:580px;">
@@ -721,9 +726,11 @@
       </div>
       <!-- Vidéo Sarah desktop -->
       <div class="hero-photo-wrap">
-        <video class="hero-video-inline" playsinline controls poster="thumbnail-video.jpg">
-          <source src="https://pub-261806ada5a047c1b2fa47b9280f2a37.r2.dev/video-courte-msi.mp4" type="video/mp4">
-        </video>
+        <div class="hero-video-wrap">
+          <video class="hero-video-inline" playsinline controls poster="thumbnail-video.jpg">
+            <source src="https://pub-261806ada5a047c1b2fa47b9280f2a37.r2.dev/video-courte-msi.mp4" type="video/mp4">
+          </video>
+        </div>
       </div>
     </div>
   </header>
