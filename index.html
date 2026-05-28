@@ -139,14 +139,21 @@
     .hero-text { text-align:left; }
     .hero-photo-wrap {
       position:relative; display:flex; align-items:flex-end; justify-content:center;
-      cursor:pointer;
     }
     .hero-photo-wrap img {
       width:100%; max-width:420px; border-radius:20px;
       box-shadow:0 32px 80px rgba(0,0,0,.35);
-      display:block; transition:transform .3s;
+      display:block;
     }
-    .hero-photo-wrap:hover img { transform:scale(1.02); }
+    .hero-video-inline {
+      width:100%; max-width:420px; border-radius:20px;
+      box-shadow:0 32px 80px rgba(0,0,0,.35);
+      display:block;
+    }
+    .hero-photo-section {
+      position:relative; width:100%; display:flex; justify-content:center; cursor:pointer;
+    }
+    .hero-photo-section:hover img { transform:scale(1.02); transition:transform .3s; }
     .hero-play-btn {
       position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
       width:80px; height:80px; border-radius:50%;
@@ -156,7 +163,7 @@
       transition:transform .2s, box-shadow .2s;
       pointer-events:none;
     }
-    .hero-photo-wrap:hover .hero-play-btn { transform:translate(-50%,-50%) scale(1.1); box-shadow:0 12px 48px rgba(0,0,0,.35); }
+    .hero-photo-section:hover .hero-play-btn { transform:translate(-50%,-50%) scale(1.1); box-shadow:0 12px 48px rgba(0,0,0,.35); }
     .hero-play-btn svg { width:28px; height:28px; fill:var(--primary); margin-left:5px; }
 
     /* ── VIDEO MODAL ── */
@@ -752,11 +759,16 @@
           <p style="margin:0;color:rgba(255,255,255,.85);font-size:14px;line-height:1.5;"><em>"J'ai déjà plus de 10 000€ investis, alors qu'il y a encore quelque temps, je ne savais pas par où commencer."</em> <strong style="color:#fff;">— Salma</strong></p>
         </div>
       </div>
-      <!-- Photo Sarah (placeholder, sera remplacée par vidéo 1m30) -->
-      <div class="hero-photo-wrap" onclick="openVideoModal()">
-        <img src="https://assets.moneducationfinanciere.com/sarah-nobg.png" alt="Sarah, fondatrice de Mon Éducation Financière" fetchpriority="high" />
-        <div class="hero-play-btn">
-          <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+      <!-- Vidéo Sarah autoplay desktop → photo + replay quand terminée -->
+      <div class="hero-photo-wrap">
+        <video class="hero-video-inline" id="heroVideoInline" autoplay playsinline controls>
+          <source src="https://pub-261806ada5a047c1b2fa47b9280f2a37.r2.dev/video-courte-msi.mp4" type="video/mp4">
+        </video>
+        <div class="hero-photo-section" id="heroPhotoDesktop" style="display:none;" onclick="replayHeroVideo()">
+          <img src="https://assets.moneducationfinanciere.com/sarah-nobg.png" alt="Sarah, fondatrice de Mon Éducation Financière" fetchpriority="high" />
+          <div class="hero-play-btn">
+            <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+          </div>
         </div>
       </div>
     </div>
@@ -774,6 +786,21 @@
     </div>
   </div>
   <script>
+    // Desktop : autoplay inline, quand terminée → photo + replay
+    var heroVideoInline = document.getElementById('heroVideoInline');
+    if (heroVideoInline) {
+      heroVideoInline.addEventListener('ended', function() {
+        heroVideoInline.style.display = 'none';
+        document.getElementById('heroPhotoDesktop').style.display = 'flex';
+      });
+    }
+    function replayHeroVideo() {
+      document.getElementById('heroPhotoDesktop').style.display = 'none';
+      heroVideoInline.style.display = 'block';
+      heroVideoInline.currentTime = 0;
+      heroVideoInline.play();
+    }
+    // Mobile : modal
     function openVideoModal() {
       document.getElementById('videoModal').classList.add('open');
       document.getElementById('heroVideo').play();
