@@ -139,17 +139,53 @@
     .hero-text { text-align:left; }
     .hero-photo-wrap {
       position:relative; display:flex; align-items:flex-end; justify-content:center;
+      cursor:pointer;
     }
     .hero-photo-wrap img {
       width:100%; max-width:420px; border-radius:20px;
       box-shadow:0 32px 80px rgba(0,0,0,.35);
-      display:block;
+      display:block; transition:transform .3s;
     }
+    .hero-photo-wrap:hover img { transform:scale(1.02); }
+    .hero-play-btn {
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      width:80px; height:80px; border-radius:50%;
+      background:rgba(255,255,255,.92); backdrop-filter:blur(8px);
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 8px 32px rgba(0,0,0,.25); z-index:2;
+      transition:transform .2s, box-shadow .2s;
+      pointer-events:none;
+    }
+    .hero-photo-wrap:hover .hero-play-btn { transform:translate(-50%,-50%) scale(1.1); box-shadow:0 12px 48px rgba(0,0,0,.35); }
+    .hero-play-btn svg { width:28px; height:28px; fill:var(--primary); margin-left:5px; }
+
+    /* ── VIDEO MODAL ── */
+    .video-modal {
+      display:none; position:fixed; inset:0; z-index:9999;
+      background:rgba(0,0,0,.85); backdrop-filter:blur(6px);
+      align-items:center; justify-content:center;
+    }
+    .video-modal.open { display:flex; }
+    .video-modal-inner {
+      position:relative; width:min(400px, 90vw);
+      border-radius:20px; overflow:hidden;
+      box-shadow:0 40px 120px rgba(0,0,0,.6);
+    }
+    .video-modal-inner video { display:block; width:100%; height:auto; }
+    .video-modal-close {
+      position:absolute; top:14px; right:14px;
+      width:36px; height:36px; border-radius:50%;
+      background:rgba(0,0,0,.5); border:none; cursor:pointer;
+      display:flex; align-items:center; justify-content:center; z-index:1;
+      transition:background .2s;
+    }
+    .video-modal-close:hover { background:rgba(0,0,0,.75); }
+    .video-modal-close svg { width:16px; height:16px; stroke:#fff; fill:none; stroke-width:2.5; }
     @media(max-width:1024px){
       .hero-inner{ grid-template-columns:1fr; text-align:center; }
       .hero-text { text-align:center; }
       .hero-tags { justify-content:center; }
-      .hero-photo-wrap { display:none; }
+      .hero-inner > .hero-photo-wrap { display:none; }
       .hero-photo-mobile { display:flex !important; }
       .hero-btns { justify-content:center; }
       .hero-trust { justify-content:center; }
@@ -696,7 +732,12 @@
         </h1>
         <!-- Photo Sarah mobile uniquement (juste sous le H1) -->
         <div class="hero-photo-mobile" style="display:none;justify-content:center;margin-top:28px;">
-          <img src="https://assets.moneducationfinanciere.com/sarah-nobg.png" alt="Sarah, fondatrice de Mon Éducation Financière" style="max-width:240px;border-radius:20px;box-shadow:0 24px 60px rgba(0,0,0,.25);" />
+          <div class="hero-photo-wrap" onclick="openVideoModal()" style="max-width:240px;">
+            <img src="https://assets.moneducationfinanciere.com/sarah-nobg.png" alt="Sarah, fondatrice de Mon Éducation Financière" style="max-width:240px;border-radius:20px;box-shadow:0 24px 60px rgba(0,0,0,.25);" />
+            <div class="hero-play-btn">
+              <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+            </div>
+          </div>
         </div>
         <p class="hero-sub" style="margin:22px 0 0;max-width:580px;">Un parcours guidé avec un <strong style="color:#fff;">bilan mensuel personnel pendant 6 mois</strong>, pour construire ta stratégie d'investissement.</p>
         <div class="hero-trust" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;max-width:580px;">
@@ -712,11 +753,38 @@
         </div>
       </div>
       <!-- Photo Sarah (placeholder, sera remplacée par vidéo 1m30) -->
-      <div class="hero-photo-wrap">
+      <div class="hero-photo-wrap" onclick="openVideoModal()">
         <img src="https://assets.moneducationfinanciere.com/sarah-nobg.png" alt="Sarah, fondatrice de Mon Éducation Financière" fetchpriority="high" />
+        <div class="hero-play-btn">
+          <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+        </div>
       </div>
     </div>
   </header>
+
+  <!-- VIDEO MODAL -->
+  <div class="video-modal" id="videoModal" onclick="closeVideoModal(event)">
+    <div class="video-modal-inner">
+      <button class="video-modal-close" onclick="closeVideoModal()">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <video id="heroVideo" controls playsinline>
+        <source src="video-courte-msi-web.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <script>
+    function openVideoModal() {
+      document.getElementById('videoModal').classList.add('open');
+      document.getElementById('heroVideo').play();
+    }
+    function closeVideoModal(e) {
+      if (e && e.target !== document.getElementById('videoModal')) return;
+      document.getElementById('videoModal').classList.remove('open');
+      var v = document.getElementById('heroVideo'); v.pause(); v.currentTime = 0;
+    }
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeVideoModal(); });
+  </script>
 
   <style>
       .howit-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
