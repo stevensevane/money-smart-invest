@@ -166,28 +166,6 @@
     .hero-photo-section:hover .hero-play-btn { transform:translate(-50%,-50%) scale(1.1); box-shadow:0 12px 48px rgba(0,0,0,.35); }
     .hero-play-btn svg { width:28px; height:28px; fill:var(--primary); margin-left:5px; }
 
-    /* ── VIDEO MODAL ── */
-    .video-modal {
-      display:none; position:fixed; inset:0; z-index:9999;
-      background:rgba(0,0,0,.85); backdrop-filter:blur(6px);
-      align-items:center; justify-content:center;
-    }
-    .video-modal.open { display:flex; }
-    .video-modal-inner {
-      position:relative; width:min(400px, 90vw);
-      border-radius:20px; overflow:hidden;
-      box-shadow:0 40px 120px rgba(0,0,0,.6);
-    }
-    .video-modal-inner video { display:block; width:100%; height:auto; }
-    .video-modal-close {
-      position:absolute; top:14px; right:14px;
-      width:36px; height:36px; border-radius:50%;
-      background:rgba(0,0,0,.5); border:none; cursor:pointer;
-      display:flex; align-items:center; justify-content:center; z-index:1;
-      transition:background .2s;
-    }
-    .video-modal-close:hover { background:rgba(0,0,0,.75); }
-    .video-modal-close svg { width:16px; height:16px; stroke:#fff; fill:none; stroke-width:2.5; }
     @media(max-width:1024px){
       .hero-inner{ grid-template-columns:1fr; text-align:center; }
       .hero-text { text-align:center; }
@@ -737,12 +715,17 @@
           Commence à investir en<br />
           <span class="hl-y">4 semaines</span>
         </h1>
-        <!-- Photo Sarah mobile uniquement (juste sous le H1) -->
+        <!-- Vidéo Sarah mobile uniquement (juste sous le H1) -->
         <div class="hero-photo-mobile" style="display:none;justify-content:center;margin-top:28px;">
-          <div class="hero-photo-wrap" onclick="openVideoModal()" style="max-width:240px;">
-            <img src="https://assets.moneducationfinanciere.com/sarah-nobg.png" alt="Sarah, fondatrice de Mon Éducation Financière" style="max-width:240px;border-radius:20px;box-shadow:0 24px 60px rgba(0,0,0,.25);" />
-            <div class="hero-play-btn">
-              <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+          <div class="hero-photo-wrap" style="max-width:300px;width:100%;">
+            <video class="hero-video-inline" id="heroVideoMobile" autoplay muted playsinline controls style="max-width:300px;">
+              <source src="https://pub-261806ada5a047c1b2fa47b9280f2a37.r2.dev/video-courte-msi.mp4" type="video/mp4">
+            </video>
+            <div class="hero-photo-section" id="heroPhotoMobile" style="display:none;" onclick="replayHeroVideo('mobile')">
+              <img src="https://assets.moneducationfinanciere.com/sarah-nobg.png" alt="Sarah, fondatrice de Mon Éducation Financière" style="max-width:300px;border-radius:20px;box-shadow:0 24px 60px rgba(0,0,0,.25);" />
+              <div class="hero-play-btn">
+                <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+              </div>
             </div>
           </div>
         </div>
@@ -761,7 +744,7 @@
       </div>
       <!-- Vidéo Sarah autoplay desktop → photo + replay quand terminée -->
       <div class="hero-photo-wrap">
-        <video class="hero-video-inline" id="heroVideoInline" autoplay playsinline controls>
+        <video class="hero-video-inline" id="heroVideoInline" autoplay muted playsinline controls>
           <source src="https://pub-261806ada5a047c1b2fa47b9280f2a37.r2.dev/video-courte-msi.mp4" type="video/mp4">
         </video>
         <div class="hero-photo-section" id="heroPhotoDesktop" style="display:none;" onclick="replayHeroVideo()">
@@ -774,43 +757,33 @@
     </div>
   </header>
 
-  <!-- VIDEO MODAL -->
-  <div class="video-modal" id="videoModal" onclick="closeVideoModal(event)">
-    <div class="video-modal-inner">
-      <button class="video-modal-close" onclick="closeVideoModal()">
-        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-      <video id="heroVideo" controls playsinline>
-        <source src="https://pub-261806ada5a047c1b2fa47b9280f2a37.r2.dev/video-courte-msi.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
   <script>
-    // Desktop : autoplay inline, quand terminée → photo + replay
-    var heroVideoInline = document.getElementById('heroVideoInline');
-    if (heroVideoInline) {
-      heroVideoInline.addEventListener('ended', function() {
-        heroVideoInline.style.display = 'none';
-        document.getElementById('heroPhotoDesktop').style.display = 'flex';
+    var vDesktop = document.getElementById('heroVideoInline');
+    var vMobile  = document.getElementById('heroVideoMobile');
+    var isMobile = window.innerWidth <= 1024;
+
+    // Pause la vidéo cachée pour éviter le double audio
+    if (isMobile && vDesktop) vDesktop.pause();
+    if (!isMobile && vMobile)  vMobile.pause();
+
+    function initVideo(video, photoId) {
+      if (!video) return;
+      video.addEventListener('ended', function() {
+        video.style.display = 'none';
+        document.getElementById(photoId).style.display = 'flex';
       });
     }
-    function replayHeroVideo() {
-      document.getElementById('heroPhotoDesktop').style.display = 'none';
-      heroVideoInline.style.display = 'block';
-      heroVideoInline.currentTime = 0;
-      heroVideoInline.play();
+    initVideo(vDesktop, 'heroPhotoDesktop');
+    initVideo(vMobile,  'heroPhotoMobile');
+
+    function replayHeroVideo(type) {
+      var video = type === 'mobile' ? vMobile : vDesktop;
+      var photoId = type === 'mobile' ? 'heroPhotoMobile' : 'heroPhotoDesktop';
+      document.getElementById(photoId).style.display = 'none';
+      video.style.display = 'block';
+      video.currentTime = 0;
+      video.play();
     }
-    // Mobile : modal
-    function openVideoModal() {
-      document.getElementById('videoModal').classList.add('open');
-      document.getElementById('heroVideo').play();
-    }
-    function closeVideoModal(e) {
-      if (e && e.target !== document.getElementById('videoModal')) return;
-      document.getElementById('videoModal').classList.remove('open');
-      var v = document.getElementById('heroVideo'); v.pause(); v.currentTime = 0;
-    }
-    document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeVideoModal(); });
   </script>
 
   <style>
