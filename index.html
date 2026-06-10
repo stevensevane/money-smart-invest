@@ -714,7 +714,7 @@
             </video>
           </div>
         </div>
-        <p class="hero-sub" style="margin:22px 0 0;max-width:580px;">Un parcours guidé avec un <strong style="color:#fff;">bilan mensuel personnel pendant 6 mois</strong>, pour construire ta stratégie d'investissement.</p>
+        <p class="hero-sub" style="margin:22px 0 0;max-width:580px;">Un parcours guidé avec un <strong style="color:#fff;">bilan mensuel personnel pendant 6 mois</strong>, pour construire ta stratégie d'investissement. <strong style="color:#fff;">Même en partant de zéro, dès 10 € par mois.</strong></p>
         <div class="hero-trust" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;max-width:580px;">
           <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:13px;font-weight:500;"><span style="font-size:15px;">💬</span> Je réponds à toutes tes questions personnellement</div>
           <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(3,253,169,.12);border:1px solid rgba(3,253,169,.45);color:#fff;font-size:13px;font-weight:500;"><span style="font-size:15px;">📅</span> Bilans mensuels pendant 6 mois</div>
@@ -724,7 +724,7 @@
         </div>
         <div class="hero-proof" style="display:flex;align-items:center;gap:14px;margin-top:26px;flex-wrap:wrap;">
           <div style="display:flex;gap:2px;color:#FFC832;font-size:18px;letter-spacing:1px;">★★★★★</div>
-          <p style="margin:0;color:rgba(255,255,255,.85);font-size:14px;line-height:1.5;"><em>"J'ai déjà plus de 10 000€ investis, alors qu'il y a encore quelque temps, je ne savais pas par où commencer."</em> <strong style="color:#fff;">— Salma</strong></p>
+          <p style="margin:0;color:rgba(255,255,255,.85);font-size:14px;line-height:1.5;"><em>"J'ai déjà plus de 10 000€ investis, alors qu'il y a encore quelque temps, je ne savais pas par où commencer."</em> <strong style="color:#fff;">Salma</strong></p>
         </div>
       </div>
       <!-- Vidéo Sarah desktop -->
@@ -1607,7 +1607,7 @@
           <div class="p-name">Money Smart Invest</div>
           <div style="display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
             <div class="p-price" id="price-complet" data-promo="75" data-regular="150" style="margin-bottom:0;"><sup>€</sup>75<span style="font-size:20px;font-weight:500;">/mois</span></div>
-            <div id="price-total" style="font-size:14px;color:rgba(255,255,255,.75);text-align:left;line-height:1.5;">pendant 6 mois<br/><span style="opacity:.7;">soit 450 € au total</span><br/><span class="promo-only" style="color:rgba(255,255,255,.55);">au lieu de <s>150 €/mois</s></span></div>
+            <div id="price-total" style="font-size:14px;color:rgba(255,255,255,.75);text-align:left;line-height:1.5;">pendant 6 mois<br/><span class="promo-only" style="color:rgba(255,255,255,.55);">au lieu de <s>150 €/mois</s></span><br/><span style="opacity:.7;">soit 450 € au total</span> <span class="promo-only" style="color:rgba(255,255,255,.55);">au lieu de <s>900 €</s></span></div>
           </div>
           <ul class="p-feats">
             <li><span class="ok">✅</span> Accès à ton rythme pendant 1 an</li>
@@ -1628,10 +1628,20 @@
             <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,.7);"><span style="font-size:14px;">⚡</span> Accès instantané</div>
           </div>
           <p style="text-align:center;font-size:14px;color:var(--accent);margin-top:18px;line-height:1.5;font-weight:700;font-family:'Instrument Sans',sans-serif;letter-spacing:.01em;">🛡️ Garantie satisfaite ou remboursée 14 jours<br/><span style="color:#fff;font-weight:600;font-style:italic;font-size:18px;">Tu ne prends aucun risque.</span></p>
+          <div class="p-proof">
+            <img src="salma.jpg" alt="Salma, membre Money Smart Invest" class="p-proof-avatar" />
+            <p class="p-proof-quote">"J'ai déjà plus de 10 000 € investis, alors qu'il y a encore quelque temps, je ne savais pas par où commencer." <strong>Salma, membre MSI</strong></p>
+          </div>
         </div>
       </div>
     </div>
   </section>
+  <style>
+    .p-proof { display:flex; align-items:center; gap:14px; margin-top:22px; padding:14px 16px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14); border-radius:14px; }
+    .p-proof-avatar { width:48px; height:48px; border-radius:50%; object-fit:cover; object-position:top; flex-shrink:0; border:2px solid rgba(255,255,255,.25); }
+    .p-proof-quote { margin:0; font-size:13px; color:rgba(255,255,255,.85); line-height:1.55; font-style:italic; text-align:left; }
+    .p-proof-quote strong { color:#fff; font-style:normal; display:block; margin-top:4px; }
+  </style>
 
   <!-- ══ COMMENT ÇA SE PASSE (rappel sous pricing) ══ -->
   <section style="background:#fff;padding:56px 24px;position:relative;z-index:20;">
@@ -1664,7 +1674,15 @@
       </div>
       <details class="r" open>
         <summary>Et si je n'ai pas encore beaucoup d'argent à investir ?<span class="faq-ic">+</span></summary>
-        <div class="faq-body"><p>Tu n'as pas besoin d'un gros capital pour commencer. Dans le programme, tu apprends à investir avec ce que tu as — même <strong>50€ par mois</strong> permettent de construire quelque chose sur le long terme. L'objectif : acquérir la méthode maintenant, pour que quand tu auras plus de ressources, tu saches exactement quoi en faire.</p></div>
+        <div class="faq-body"><p>Tu n'as pas besoin d'un gros capital pour commencer. Dans le programme, tu apprends à investir avec ce que tu as : même <strong>10€ par mois</strong> permettent de construire quelque chose sur le long terme. L'objectif : acquérir la méthode maintenant, pour que quand tu auras plus de ressources, tu saches exactement quoi en faire.</p></div>
+      </details>
+      <details class="r d1" open>
+        <summary>450 €, c'est un budget. Qu'est-ce que ça me rapporte ?<span class="faq-ic">+</span></summary>
+        <div class="faq-body"><p>C'est une vraie question, et voici ma réponse la plus honnête : <strong>ne rien faire coûte plus cher</strong>. J'ai laissé 20 000€ dormir sur un livret pendant 5 ans. Résultat : <strong>plus de 10 000€ de gains envolés</strong>. Le prix du parcours est une fraction de ce que l'inaction m'a coûté.</p><p>Tu repars avec une compétence à vie : savoir où placer ton argent, pourquoi, et avec quelle stratégie. Et tu as <strong>14 jours pour tester</strong> : si ce n'est pas fait pour toi, je te rembourse intégralement.</p></div>
+      </details>
+      <details class="r" open>
+        <summary>Est-ce un abonnement ?<span class="faq-ic">+</span></summary>
+        <div class="faq-body"><p>Non. Tu paies <strong>une seule formation, étalée en 6 mensualités de 75€</strong> (450€ au total). Rien ne se renouvelle ensuite, il n'y a aucun prélèvement caché. Tu gardes l'accès pendant 1 an, et tu disposes de 14 jours après l'inscription pour changer d'avis et être remboursée.</p></div>
       </details>
       <details class="r d1" open>
         <summary>Est-ce que ce programme est fait pour moi si je débute ?<span class="faq-ic">+</span></summary>
